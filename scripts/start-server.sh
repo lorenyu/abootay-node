@@ -23,7 +23,7 @@ then
 fi
 
 # start the node server
-nohup node server.js < /dev/null > $out_file 2> $err_file &
+nohup /usr/local/bin/node /var/rapp/abootay-node/server.js < /dev/null > $out_file 2> $err_file &
 pid=$!
 echo "Server running with pid $pid."
 
