@@ -1,0 +1,31 @@
+{
+	"name": "abootay-node",
+	"version": "0.1.0",
+	"author": "Loren Yu <yuloren@gmail.com>",
+	"description": "Social word-guessing game where you can upload your own word packs!",
+	"contributors": [
+		{
+			"name": "Loren Yu",
+			"email": "yuloren@gmail.com"
+		}
+	],
+	"scripts": {
+		"start": "./scripts/start-server.sh",
+		"stop": "./scripts/stop-server.sh",
+		"test": "echo \"We need a testing framework!!!\""
+	},
+	"repository": {
+		"type": "git",
+		"url": "git@github.com:lorenyu/abootay-node.git"
+	},
+	"dependencies": {
+		"express": "2.x.x",
+		"mongodb": ">=0.9",
+		"mongoose": "2.x.x"
+	},
+	"bundleDependencies": [
+	],
+	"engine": {
+		"node": "0.6.x"
+	}
+}
