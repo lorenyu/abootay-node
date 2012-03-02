@@ -20,6 +20,7 @@
 	},
 	"dependencies": {
 		"express": "2.x.x",
+		"jade": "0.20.x",
 		"mongodb": ">=0.9",
 		"mongoose": "2.x.x"
 	},
