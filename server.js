@@ -26,6 +26,17 @@ app.use(express.methodOverride());
 // need this to enable template inheritance in jade - 2012-03-03
 app.set('view options', { layout: false });
 
+
+
+// helper functions to be used within views
+app.helpers({
+	urlencode: function(str) {
+		return escape(str);
+	}
+});
+
+
+
 app.get('/', function(req, res){
 	res.redirect('/decks', 302);
 });

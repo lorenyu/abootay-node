@@ -6,5 +6,4 @@ block body_content
 	ul
 		each deck in decks
 			li
-				//- TODO: need to urlencode the deck name
-				a(href='/decks/'+deck.name)= deck.name
+				a(href='/decks/'+urlencode(deck.name))= deck.name
