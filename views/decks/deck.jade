@@ -1,0 +1,12 @@
+extends ../layout
+
+block body_content
+	h1= deck.name
+
+	ul.cards
+		each card in deck.cards
+			li.card
+				h3= card.phrase
+				ul.notes
+					each note in card.notes
+						li.note= note

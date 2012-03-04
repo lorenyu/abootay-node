@@ -20,8 +20,80 @@ app.get('/phrases', function(req, res){
 	res.render('phrases/index.jade');
 });
 
+app.get('/decks', function(req, res){
+	db.open(function(err, db) {
+		if (err) {
+			console.error(err);
+			return;
+		}
+
+		db.collection('decks', function(err, collection) {
+			collection.find().toArray(function(err, items) {
+				res.render('decks/index.jade', {
+					decks: items
+				});
+			});
+		});
+	});
+});
+
+app.get('/decks/:deckName', function(req, res){
+	db.open(function(err, db) {
+		if (err) {
+			console.error(err);
+			return;
+		}
+
+		db.collection('decks', function(err, collection) {
+			collection.findOne({ name: req.params.deckName }, function(err, deck) {
+				if (err) {
+					console.error(err);
+					return;
+				}
+
+				res.render('decks/deck.jade', {
+					deck: deck
+				})
+			});
+		});
+	});
+});
+
+app.put('/decks/create', function(req, res){
+	var name = req.body.name;
+
+	db.open(function(err, db) {
+		if (err) {
+			console.error(err);
+			return;
+		}
+
+		db.collection('decks', function(err, collection) {
+			collection.update(
+				{ name: name },
+				{ name: name, cards: [] },
+				{upsert: true, safe: true},
+				function(err, result) {
+					if (err) {
+						console.err(err);
+						return;
+					}
+
+					collection.findOne({ name: name }, function(err, deck) {
+						if (err) {
+							console.err(err);
+							return;
+						}
+
+						res.redirect('/decks/'+deck.name, 303);
+					});
+				}
+			);
+		});
+	});
+});
+
 app.put('/phrases/create', function(req, res){
-	console.log(req);
 	var phrase = req.body.phrase,
 		notes = _.map(req.body.notes.split('\n'), function (note) {
 			return _s.trim(note);

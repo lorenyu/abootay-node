@@ -1,0 +1,9 @@
+extends ../layout
+
+block body_content
+	include create-form
+
+	ul
+		each deck in decks
+			li
+				a(href='/decks/'+deck.name)= deck.name
