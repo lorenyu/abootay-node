@@ -7,7 +7,7 @@ var app = express.createServer(),
 	db = new mongodb.Db('abootay', new mongodb.Server('localhost', 27017, { autoreconnect: true }));
 
 // TODO: move to separate file
-var Path = {
+var path = {
 	toDeck: function(deck_or_deckName) {
 		var deckName;
 		if (typeof(deck_or_deckName) === 'string') {
@@ -33,7 +33,8 @@ app.set('view options', { layout: false });
 app.helpers({
 	urlencode: function(str) {
 		return escape(str);
-	}
+	},
+	path: path
 });
 
 
@@ -106,7 +107,7 @@ app.put('/decks/create', function(req, res){
 							return;
 						}
 
-						res.redirect(Path.toDeck(deck), 303);
+						res.redirect(path.toDeck(deck), 303);
 					});
 				}
 			);
@@ -136,7 +137,7 @@ app.put('/cards/create', function(req, res){
 				function(err, numUpdated) {
 					if (err) { console.error(err); return; }
 
-					res.redirect(Path.toDeck(deck_name));
+					res.redirect(path.toDeck(deck_name));
 				}
 			);
 		});
