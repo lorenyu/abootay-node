@@ -21,6 +21,7 @@
 	"dependencies": {
 		"express": "2.x.x",
 		"jade": "0.20.x",
+		"less": "1.x.x",
 		"mongodb": ">=0.9",
 		"underscore": "1.x.x",
 		"underscore.string": "2.x.x"

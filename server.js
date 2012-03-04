@@ -28,7 +28,6 @@ app.set('view engine', 'jade');
 app.set('view options', { layout: false });
 
 
-
 // helper functions to be used within views
 app.helpers({
 	path: path
@@ -38,6 +37,10 @@ app.helpers({
 
 app.get('/', function(req, res){
 	res.redirect('/decks', 302);
+});
+
+app.get('/css/all.css', function(req, res) {
+	res.render('css/all.css.jade');
 });
 
 app.get('/decks', function(req, res){
