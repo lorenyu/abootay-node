@@ -44,7 +44,7 @@ app.get('/css/all.css', function(req, res) {
 });
 
 app.get('/jade/cards/card.jade', function(req, res) {
-	res.sendfile('views/game/card.jade');
+	res.sendfile('views/cards/card.jade');
 });
 
 app.get('/decks', function(req, res){
