@@ -13,7 +13,7 @@ app.use(express.methodOverride());
 app.set('view options', { layout: false });
 
 app.get('/', function(req, res){
-	res.render('index.jade');
+	res.redirect('/decks', 302);
 });
 
 app.get('/phrases', function(req, res){
