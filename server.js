@@ -23,6 +23,7 @@ var Path = {
 app.use(express.bodyParser());
 app.use(express.methodOverride());
 
+app.set('view engine', 'jade');
 // need this to enable template inheritance in jade - 2012-03-03
 app.set('view options', { layout: false });
 
@@ -50,7 +51,7 @@ app.get('/decks', function(req, res){
 
 		db.collection('decks', function(err, decks) {
 			decks.find().toArray(function(err, items) {
-				res.render('decks/index.jade', {
+				res.render('decks/index', {
 					decks: items
 				});
 			});
@@ -74,7 +75,7 @@ app.param('deckName', function(req, res, next, deckName){
 });
 
 app.get('/decks/:deckName', function(req, res){
-	res.render('decks/deck.jade', {
+	res.render('decks/deck', {
 		deck: req.deck
 	});
 });
