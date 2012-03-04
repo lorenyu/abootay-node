@@ -43,6 +43,10 @@ app.get('/css/all.css', function(req, res) {
 	res.render('css/all.css.jade');
 });
 
+app.get('/jade/cards/card.jade', function(req, res) {
+	res.sendfile('views/game/card.jade');
+});
+
 app.get('/decks', function(req, res){
 	db.open(function(err, db) {
 		if (err) {
