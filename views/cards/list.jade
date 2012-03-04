@@ -1,7 +1,4 @@
 ul.cards
 	each card in deck.cards
 		li.card
-			h3= card.phrase
-			ul.notes
-				each note in card.notes
-					li.note= note
+			include card
