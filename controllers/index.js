@@ -1,3 +1,2 @@
-var DeckController = require('./DeckController.js');
-
-exports.DeckController = DeckController;
+exports.DeckController = require('./DeckController.js');
+exports.GameController = require('./GameController.js');

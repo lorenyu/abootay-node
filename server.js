@@ -36,9 +36,10 @@ app.get('/jade/cards/card.jade', function(req, res) {
 	res.sendfile('views/cards/card.jade');
 });
 
+app.get('/decks/:deckName', controllers.DeckController.deck);
+
 app.get('/decks', controllers.DeckController.list);
 app.param('deckName', controllers.DeckController.paramDeckName);
-app.get('/decks/:deckName', controllers.DeckController.deck);
 app.put('/decks/create', controllers.DeckController.create);
 
 app.put('/cards/create', function(req, res){
@@ -69,6 +70,8 @@ app.put('/cards/create', function(req, res){
 		});
 	});
 });
+
+app.get('/games/:deckName', controllers.GameController.start);
 
 app.listen(8805);
 console.log("Server listening on 8805");
