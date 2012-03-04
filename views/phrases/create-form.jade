@@ -1,0 +1,10 @@
+form(action='/phrases/create', method='post')
+	input(type='hidden', name='_method', value='put')
+	.phrase
+		label Phrase
+		input(type='text', name='phrase')
+	.notes
+		label Notes
+		textarea(name='notes')
+	.submit
+		input(type='submit', value='Add')
