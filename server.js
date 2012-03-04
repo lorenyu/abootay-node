@@ -1,26 +1,11 @@
 var express = require('express'),
 	mongodb = require('mongodb'),
 	_ = require('underscore'),
-	_s = require('underscore.string');
+	_s = require('underscore.string'),
+	path = require('./path');
 
 var app = express.createServer(),
 	db = new mongodb.Db('abootay', new mongodb.Server('localhost', 27017, { autoreconnect: true }));
-
-// TODO: move to separate file
-var path = {
-	to: {
-		deck: function(deck_or_deckName) {
-			var deckName;
-			if (typeof(deck_or_deckName) === 'string') {
-				deckName = deck_or_deckName;
-			} else {
-				deck = deck_or_deckName;
-				deckName = deck.name;
-			}
-			return '/decks/' + escape(deckName);
-		}
-	}
-};
 
 app.use(express.bodyParser());
 app.use(express.methodOverride());
