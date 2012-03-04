@@ -30,8 +30,8 @@ app.get('/', function(req, res){
 	res.redirect('/decks', 302);
 });
 
-app.get('/phrases', function(req, res){
-	res.render('phrases/index.jade');
+app.get('/cards', function(req, res){
+	res.render('cards/index.jade');
 });
 
 app.get('/decks', function(req, res){
@@ -41,8 +41,8 @@ app.get('/decks', function(req, res){
 			return;
 		}
 
-		db.collection('decks', function(err, collection) {
-			collection.find().toArray(function(err, items) {
+		db.collection('decks', function(err, decks) {
+			decks.find().toArray(function(err, items) {
 				res.render('decks/index.jade', {
 					decks: items
 				});
@@ -51,25 +51,24 @@ app.get('/decks', function(req, res){
 	});
 });
 
-app.get('/decks/:deckName', function(req, res){
+app.param('deckName', function(req, res, next, deckName){
 	db.open(function(err, db) {
-		if (err) {
-			console.error(err);
-			return;
-		}
+		if (err) return next(err);
 
-		db.collection('decks', function(err, collection) {
-			collection.findOne({ name: req.params.deckName }, function(err, deck) {
-				if (err) {
-					console.error(err);
-					return;
-				}
+		db.collection('decks', function(err, decks) {
+			decks.findOne({ name: deckName }, function(err, deck) {
+				if (err) return next(err);
 
-				res.render('decks/deck.jade', {
-					deck: deck
-				})
+				req.deck = deck;
+				next();
 			});
 		});
+	});
+});
+
+app.get('/decks/:deckName', function(req, res){
+	res.render('decks/deck.jade', {
+		deck: req.deck
 	});
 });
 
@@ -99,7 +98,7 @@ app.put('/decks/create', function(req, res){
 							return;
 						}
 
-						res.redirect('/decks/'+deck.name, 303);
+						res.redirect(Path.toDeck(deck), 303);
 					});
 				}
 			);
@@ -107,27 +106,33 @@ app.put('/decks/create', function(req, res){
 	});
 });
 
-app.put('/phrases/create', function(req, res){
-	var phrase = req.body.phrase,
+app.put('/cards/create', function(req, res){
+	var deck_name = req.body.deck_name
+		phrase = req.body.phrase,
 		notes = _.map(req.body.notes.split('\n'), function (note) {
 			return _s.trim(note);
-		});
+		}),
+		card = {
+			phrase: phrase,
+			notes: notes
+		};
 
 	db.open(function(err, db) {
-		if (err) {
-			console.error(err);
-			return;
-		}
+		if (err) { console.error(err); return; }
 
-		db.collection('phrases', function(err, collection) {
-			collection.insert({
-				phrase: phrase,
-				notes: notes
-			});
+		db.collection('decks', function(err, decks) {
+			decks.update(
+				{ name : deck_name },
+				{ $push : { cards : card } },
+				{ safe: true },
+				function(err, numUpdated) {
+					if (err) { console.error(err); return; }
+
+					res.redirect(Path.toDeck(deck_name));
+				}
+			);
 		});
 	});
-
-	res.redirect('/phrases', 303);
 });
 
 app.listen(8805);

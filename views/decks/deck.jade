@@ -3,6 +3,8 @@ extends ../layout
 block body_content
 	h1= deck.name
 
+	include ../cards/create-form.jade
+
 	ul.cards
 		each card in deck.cards
 			li.card

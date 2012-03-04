@@ -1,5 +1,6 @@
-form(action='/phrases/create', method='post')
+form(action='/cards/create', method='post')
 	input(type='hidden', name='_method', value='put')
+	input(type='hidden', name='deck_name', value=deck.name)
 	.phrase
 		label Phrase
 		input(type='text', name='phrase')
