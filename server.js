@@ -31,9 +31,6 @@ app.set('view options', { layout: false });
 
 // helper functions to be used within views
 app.helpers({
-	urlencode: function(str) {
-		return escape(str);
-	},
 	path: path
 });
 
