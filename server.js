@@ -8,15 +8,17 @@ var app = express.createServer(),
 
 // TODO: move to separate file
 var path = {
-	toDeck: function(deck_or_deckName) {
-		var deckName;
-		if (typeof(deck_or_deckName) === 'string') {
-			deckName = deck_or_deckName;
-		} else {
-			deck = deck_or_deckName;
-			deckName = deck.name;
+	to: {
+		deck: function(deck_or_deckName) {
+			var deckName;
+			if (typeof(deck_or_deckName) === 'string') {
+				deckName = deck_or_deckName;
+			} else {
+				deck = deck_or_deckName;
+				deckName = deck.name;
+			}
+			return '/decks/' + escape(deckName);
 		}
-		return '/decks/' + escape(deckName);
 	}
 };
 
@@ -111,7 +113,7 @@ app.put('/decks/create', function(req, res){
 							return;
 						}
 
-						res.redirect(path.toDeck(deck), 303);
+						res.redirect(path.to.deck(deck), 303);
 					});
 				}
 			);
@@ -141,7 +143,7 @@ app.put('/cards/create', function(req, res){
 				function(err, numUpdated) {
 					if (err) { console.error(err); return; }
 
-					res.redirect(path.toDeck(deck_name));
+					res.redirect(path.to.deck(deck_name));
 				}
 			);
 		});
