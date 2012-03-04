@@ -3,6 +3,8 @@ extends ../layout
 block body_content
 	h1= deck.name
 
+	a.play(href=path.to.startGameWithDeck(deck)) Play
+
 	.create-form-container
 		h3 Add Card
 		include ../cards/create-form.jade
