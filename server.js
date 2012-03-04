@@ -30,10 +30,6 @@ app.get('/', function(req, res){
 	res.redirect('/decks', 302);
 });
 
-app.get('/cards', function(req, res){
-	res.render('cards/index.jade');
-});
-
 app.get('/decks', function(req, res){
 	db.open(function(err, db) {
 		if (err) {
