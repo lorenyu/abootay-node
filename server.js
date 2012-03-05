@@ -11,6 +11,7 @@ var app = express.createServer(),
 
 app.use(express.bodyParser());
 app.use(express.methodOverride());
+app.use(express.compiler({ src: __dirname + '/public', enable: ['less'] }));
 app.use(express.static(__dirname + '/public'));
 
 app.set('view engine', 'jade');
@@ -27,9 +28,6 @@ app.helpers({
 
 app.get('/', function(req, res){
 	res.redirect('/decks', 302);
-});
-app.get('/css/all.css', function(req, res) {
-	res.render('css/all.css.jade');
 });
 
 app.get('/jade/cards/card.jade', function(req, res) {
