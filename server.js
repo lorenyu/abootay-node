@@ -41,35 +41,9 @@ app.get('/decks/:deckName', controllers.DeckController.deck);
 app.get('/decks', controllers.DeckController.list);
 app.param('deckName', controllers.DeckController.paramDeckName);
 app.put('/decks/create', controllers.DeckController.create);
+app.get('/json/decks/:deckName/cards', controllers.CardController.cardsJSON)
 
-app.put('/cards/create', function(req, res){
-	var deck_name = req.body.deck_name
-		phrase = req.body.phrase,
-		notes = _.map(req.body.notes.split('\n'), function (note) {
-			return _s.trim(note);
-		}),
-		card = {
-			phrase: phrase,
-			notes: notes
-		};
-
-	db.open(function(err, db) {
-		if (err) { console.error(err); return; }
-
-		db.collection('decks', function(err, decks) {
-			decks.update(
-				{ name : deck_name },
-				{ $push : { cards : card } },
-				{ safe: true },
-				function(err, numUpdated) {
-					if (err) { console.error(err); return; }
-
-					res.redirect(path.to.deck(deck_name));
-				}
-			);
-		});
-	});
-});
+app.put('/cards/create', controllers.CardController.addCardToDeck);
 
 app.get('/games/:deckName', controllers.GameController.start);
 

@@ -1,3 +1,2 @@
-var DeckService = require('./DeckService.js');
-
-exports.DeckService = DeckService;
+exports.DeckService = require('./DeckService.js');
+exports.CardService = require('./CardService.js');
