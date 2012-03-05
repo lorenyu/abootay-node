@@ -11,6 +11,7 @@ var app = express.createServer(),
 
 app.use(express.bodyParser());
 app.use(express.methodOverride());
+app.use(express.static(__dirname + '/public'));
 
 app.set('view engine', 'jade');
 // need this to enable template inheritance in jade - 2012-03-03
@@ -27,7 +28,6 @@ app.helpers({
 app.get('/', function(req, res){
 	res.redirect('/decks', 302);
 });
-
 app.get('/css/all.css', function(req, res) {
 	res.render('css/all.css.jade');
 });
