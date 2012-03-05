@@ -1,6 +1,4 @@
-var mongodb = require('mongodb');
-
-var db = new mongodb.Db('abootay', new mongodb.Server('localhost', 27017, { autoreconnect: true }));
+var db = require('../db');
 
 var DeckService = module.exports = {
 	getDeckByName: function(deckName, callback) {
