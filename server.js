@@ -33,13 +33,7 @@ app.get('/', function(req, res){
 	res.redirect('/decks', 302);
 });
 
-app.get('/js/renderers/cards/card.js', function(req, res) {
-	fs.readFile('views/cards/card.jade', function (err, jadeStr) {
-		if (err) throw err;
-		var render = jade.compile(jadeStr, { client: true});
-		res.send('abootay.namespace("render").card = ' + render.toString(), { 'Content-Type' : 'text/javascript' });
-	});
-});
+app.get('/js/renderers/cards/card.js', controllers.CardController.clientRenderer);
 
 app.get('/decks/:deckName', controllers.DeckController.deck);
 

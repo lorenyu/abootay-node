@@ -1,4 +1,6 @@
-var db = require('../db'),
+var fs = require('fs'),
+	jade = require('jade'),
+	db = require('../db'),
 	DeckService = require('../services/DeckService');
 
 var CardService = module.exports = {
@@ -24,6 +26,15 @@ var CardService = module.exports = {
 					callback
 				);
 			});
+		});
+	},
+	getClientRenderer: function(callback) {
+		fs.readFile('views/cards/card.jade', function (err, jadeStr) {
+			if (err) return callback(err);
+
+			var render = jade.compile(jadeStr, { client: true});
+			render = 'abootay.namespace("render").card = ' + render.toString();
+			callback(null, render);
 		});
 	}
 };
