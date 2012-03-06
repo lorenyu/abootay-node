@@ -5,5 +5,15 @@
 		each note in card.notes
 			.note= note
 .buttons
-	button.wrong Wrong
-	button.right Right
+	button Next
+
+script
+	$('.game-container button').click(function(event) {
+		if (abootay.game.deck.cards.length <= 0) {
+			alert('No cards left');
+			return;
+		}
+		var card = abootay.game.deck.cards.pop();
+		$('.game-container').html(abootay.render.game.showCard({ card: card }));
+	});
+	
