@@ -1,9 +1,12 @@
 extends ../layout
 
+block precompile
+	- bodyClass = 'decks'
+
 block body_content
 	include create-form
 
-	ul
+	.decks
 		each deck in decks
-			li
+			.deck
 				a(href=path.to.deck(deck))= deck.name

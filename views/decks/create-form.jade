@@ -1,7 +1,9 @@
-form(action='/decks/create', method='post')
+form.create-deck-form(action='/decks/create', method='post')
 	input(type='hidden', name='_method', value='put')
-	.deck
-		label Deck Name
+	.deck-name
+		label Deck Name:
 		input(type='text', name='name')
 	.submit
 		input(type='submit', value='Add')
+script
+	$('.create-deck-form .deck-name input').focus()

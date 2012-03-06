@@ -18,6 +18,7 @@
 .green-button() { .box-shadow(1px 1px 2px @black); background: @green; color: @black; border-width: 0; cursor: pointer; font-size: 16px; padding: 6px 12px; text-decoration: none;
 	&:hover { .box-shadow(inset 1px 1px 2px @black); background: darken(@green, 20%); }
 }
+.menu-item() { .green-button(); display: block; font-size: 22px; padding: 6px 0; text-align: center; width: 100%; }
 
 
 body { background: @white; color: @black; font-family: Helvetica, Arial, sans-serif; font-size: 20px; }
@@ -25,13 +26,26 @@ body { background: @white; color: @black; font-family: Helvetica, Arial, sans-se
 h1 { .title-text(); .text-shadow(@black 1px 1px 2px); margin: 0 0 12px; }
 article { .center-block(); .adaptive-width(320px); .border-radius(12px); background: #fff; padding: 22px; margin-top: 22px; }
 .game-container {
-	button { .green-button(); display: block; font-size: 22px; padding: 6px 0; text-align: center; width: 100%; }
+	button { .menu-item(); }
 }
 .card { text-align: center;
 	.phrase { .text-shadow(@black 1px 1px 2px); border-bottom: 2px solid @black; font-size: 36px; padding-bottom: 12px; }
 	.notes { margin: 12px; }
 	.note { font-size: 22px; padding: 6px; }
 }
-.homepage {
-	.button { .green-button(); display: block; font-size: 22px; padding: 6px 0; text-align: center; width: 100%; }
+body.homepage {
+	.button { .menu-item(); }
+}
+body.decks {
+	a { .menu-item(); }
+	.create-deck-form { background: @yellow; padding: 16px; }
+	.deck-name {
+		input { .adaptive-width(320px, 100%); font-size: 20px; display: block; line-height: 1.2em; }
+	}
+	.submit { margin-top: 12px; text-align: center; 
+		input { .box-shadow(1px 1px 2px @black); background: @secondary-blue; color: @black; border-width: 0; cursor: pointer; font-size: 16px; padding: 6px 12px; text-decoration: none;
+			&:hover { .box-shadow(inset 1px 1px 2px @black); background: darken(@secondary-blue, 20%); }
+		}
+	}
+	.decks { margin: 22px 0;}
 }
