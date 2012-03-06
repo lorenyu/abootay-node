@@ -1,4 +1,5 @@
-var db = require('../db');
+var db = require('../db'),
+	_ = require('underscore');
 
 var DeckService = module.exports = {
 	getDeckByName: function(deckName, callback) {
@@ -30,7 +31,8 @@ var DeckService = module.exports = {
 			if (err) return callback(err);
 
 			db.collection('decks', function(err, decks) {
-				decks.find({}, {name:1}, {limit:10}).toArray(function(err, deckNames) {
+				decks.find({}, {name:1}, {limit:10}).toArray(function(err, deckNameObjects) {
+					var deckNames = _.pluck(deckNameObjects, 'name');
 					callback(null, deckNames);
 				});
 			});
