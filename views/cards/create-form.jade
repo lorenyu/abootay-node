@@ -1,4 +1,4 @@
-form(action='/cards/create', method='post')
+form.create-card-form(action='/cards/create', method='post')
 	input(type='hidden', name='_method', value='put')
 	input(type='hidden', name='deck_name', value=deck.name)
 	.phrase
@@ -9,3 +9,5 @@ form(action='/cards/create', method='post')
 		textarea(name='notes')
 	.submit
 		input(type='submit', value='Add')
+script
+	$('.create-card-form .phrase input').focus()
