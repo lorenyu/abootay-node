@@ -3,11 +3,13 @@ html
 		title Abootay
 		meta(name="viewport", content="width=device-width, user-scalable=yes")
 
-		include js/lib/jquery
-		include js/lib/async
-		include js/lib/jade
-		include js/abootay
-		include css/reset
-		include css/all
+		block scripts
+			include js/lib/jquery
+			include js/lib/async
+			include js/lib/jade
+			include js/abootay
+			include css/reset
+			include css/all
+
 	body
 		block body_content

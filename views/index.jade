@@ -1,4 +1,18 @@
 extends layout
 
+block append scripts
+	script
+		$(document).ready(function() {
+			$('.play').click(function(event) {
+				$.ajax({
+					url: '/json/decks/names',
+					dataType: 'json',
+					success: function(data, status) {
+						console.log(data);
+					}
+				})
+			});
+		});
+
 block body_content
-	p Hello, from index
+	button.play Play

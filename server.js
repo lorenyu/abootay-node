@@ -30,7 +30,7 @@ app.helpers({
 
 
 app.get('/', function(req, res){
-	res.redirect('/decks', 302);
+	res.render('index');
 });
 
 app.get('/js/renderers/cards/card.js', controllers.CardController.clientRenderer);
