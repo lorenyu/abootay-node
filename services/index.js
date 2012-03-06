@@ -1,2 +1,3 @@
 exports.DeckService = require('./DeckService.js');
 exports.CardService = require('./CardService.js');
+exports.RendererService = require('./RendererService.js');

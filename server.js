@@ -33,7 +33,7 @@ app.get('/', function(req, res){
 	res.render('index');
 });
 
-app.get('/js/renderers/cards/card.js', controllers.CardController.clientRenderer);
+app.get('/js/renderers/*.js', controllers.RendererController.clientRenderer);
 
 app.get('/decks/:deckName', controllers.DeckController.deck);
 
