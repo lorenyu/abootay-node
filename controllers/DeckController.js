@@ -10,6 +10,13 @@ var DeckController = module.exports = {
 			next();
 		});
 	},
+	deckNamesJSON: function(req, res) {
+		DeckService.getDeckNames(function(err, deckNames) {
+			if (err) { console.error(err); res.send(err); }
+
+			res.json(deckNames);
+		});
+	},
 	list: function(req, res) {
 		DeckService.getDecks(function(err, decks) {
 			if (err) { console.error(err); res.send(err); }

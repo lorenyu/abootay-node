@@ -40,7 +40,8 @@ app.get('/decks/:deckName', controllers.DeckController.deck);
 app.get('/decks', controllers.DeckController.list);
 app.param('deckName', controllers.DeckController.paramDeckName);
 app.put('/decks/create', controllers.DeckController.create);
-app.get('/json/decks/:deckName/cards', controllers.CardController.cardsJSON)
+app.get('/json/decks/:deckName/cards', controllers.CardController.cardsJSON);
+app.get('/json/decks/names', controllers.DeckController.deckNamesJSON);
 
 app.put('/cards/create', controllers.CardController.addCardToDeck);
 
