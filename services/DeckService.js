@@ -25,6 +25,17 @@ var DeckService = module.exports = {
 			});
 		});
 	},
+	getDeckNames: function(callback) {
+		db.open(function(err, db) {
+			if (err) return callback(err);
+
+			db.collection('decks', function(err, decks) {
+				decks.find({}, {name:1}, {limit:10}).toArray(function(err, deckNames) {
+					callback(null, deckNames);
+				});
+			});
+		});
+	},
 	createDeck: function(deck, callback) {
 		db.open(function(err, db) {
 			if (err) return callback(err);
