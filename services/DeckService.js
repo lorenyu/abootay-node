@@ -31,7 +31,7 @@ var DeckService = module.exports = {
 			if (err) return callback(err);
 
 			db.collection('decks', function(err, decks) {
-				decks.find({}, {name:1}, {limit:10}).toArray(function(err, deckNameObjects) {
+				decks.find({}, {name:1}, {limit:100}).toArray(function(err, deckNameObjects) {
 					var deckNames = _.pluck(deckNameObjects, 'name');
 					callback(null, deckNames);
 				});
