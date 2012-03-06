@@ -1,10 +1,13 @@
-var express = require('express'),
+var fs = require('fs'),
+	express = require('express'),
 	mongodb = require('mongodb'),
 	_ = require('underscore'),
 	_s = require('underscore.string'),
 	controllers = require('./controllers'),
 	services = require('./services'),
-	path = require('./path');
+	path = require('./path'),
+
+	jade = require('jade');
 
 var app = express.createServer(),
 	db = new mongodb.Db('abootay', new mongodb.Server('localhost', 27017, { autoreconnect: true }));
@@ -30,8 +33,12 @@ app.get('/', function(req, res){
 	res.redirect('/decks', 302);
 });
 
-app.get('/jade/cards/card.jade', function(req, res) {
-	res.sendfile('views/cards/card.jade');
+app.get('/js/renderers/cards/card.js', function(req, res) {
+	fs.readFile('views/cards/card.jade', function (err, jadeStr) {
+		if (err) throw err;
+		var renderer = jade.compile(jadeStr, { client: true});
+		res.send('abootay.namespace("renderers").cardRenderer = ' + renderer.toString(), { 'Content-Type' : 'text/javascript' });
+	});
 });
 
 app.get('/decks/:deckName', controllers.DeckController.deck);
