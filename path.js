@@ -1,5 +1,8 @@
 var path = module.exports = {
 	to: {
+		decks: function() {
+			return '/decks'
+		},
 		deck: function(deck_or_deckName) {
 			var deckName;
 			if (typeof(deck_or_deckName) === 'string') {
