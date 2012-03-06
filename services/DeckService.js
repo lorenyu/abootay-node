@@ -10,6 +10,10 @@ var DeckService = module.exports = {
 				decks.findOne({ name: deckName }, function(err, deck) {
 					if (err) return callback(err);
 
+					if (!deck.cards) {
+						deck.cards = [];
+					}
+
 					callback(null, deck);
 				});
 			});
@@ -45,7 +49,7 @@ var DeckService = module.exports = {
 			db.collection('decks', function(err, collection) {
 				collection.update(
 					{ name: deck.name },
-					deck,
+					{ $set: { name: deck.name } },
 					{ upsert: true, safe: true },
 					function(err, result) {
 						if (err) return callback(err);
