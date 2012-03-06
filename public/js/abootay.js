@@ -1,6 +1,6 @@
 (function($) {
 	var abootay = window.abootay = {
-		renderers: {}
+		render: {}
 	};
 
 	abootay.namespace = function(namespace) {

@@ -36,8 +36,8 @@ app.get('/', function(req, res){
 app.get('/js/renderers/cards/card.js', function(req, res) {
 	fs.readFile('views/cards/card.jade', function (err, jadeStr) {
 		if (err) throw err;
-		var renderer = jade.compile(jadeStr, { client: true});
-		res.send('abootay.namespace("renderers").cardRenderer = ' + renderer.toString(), { 'Content-Type' : 'text/javascript' });
+		var render = jade.compile(jadeStr, { client: true});
+		res.send('abootay.namespace("render").card = ' + render.toString(), { 'Content-Type' : 'text/javascript' });
 	});
 });
 
