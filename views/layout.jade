@@ -1,3 +1,6 @@
+block precompile
+	- bodyClass = ''
+
 html
 	head
 		title Abootay
@@ -12,6 +15,6 @@ html
 			include css/reset
 			include css/all
 
-	body
+	body(class=bodyClass)
 		article
 			block body_content

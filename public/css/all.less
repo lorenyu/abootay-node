@@ -12,22 +12,26 @@
 .adaptive-width(@max-pixel-width, @max-percentage-width:92%) { width: @max-percentage-width; max-width: @max-pixel-width; }
 .border-radius(@radius) { -webkit-border-radius: @radius; -moz-border-radius: @radius; border-radius: @radius; }
 .box-shadow(@params) { -webkit-box-shadow: @params; -moz-box-shadow: @params; box-shadow: @params; }
+.text-shadow(@params) { -webkit-text-shadow: @params; -moz-box-text-shadow: @params; text-shadow: @params; }
 
 .title-text { font-size: 36px; }
-.button { .box-shadow(1px 1px 2px @black); background: @green; color: @black; border-width: 0; cursor: pointer; font-size: 16px; padding: 6px 12px;
+.green-button() { .box-shadow(1px 1px 2px @black); background: @green; color: @black; border-width: 0; cursor: pointer; font-size: 16px; padding: 6px 12px; text-decoration: none;
 	&:hover { .box-shadow(inset 1px 1px 2px @black); background: darken(@green, 20%); }
 }
 
 
 body { background: @white; color: @black; font-family: Helvetica, Arial, sans-serif; font-size: 20px; }
 
-h1 { .title-text(); margin: 0 0 12px; }
+h1 { .title-text(); .text-shadow(@black 1px 1px 2px); margin: 0 0 12px; }
 article { .center-block(); .adaptive-width(320px); .border-radius(12px); background: #fff; padding: 22px; margin-top: 22px; }
 .game-container {
-	button { .button(); padding: 6px 0; text-align: center; width: 100%; }
+	button { .green-button(); display: block; font-size: 22px; padding: 6px 0; text-align: center; width: 100%; }
 }
 .card { text-align: center;
-	.phrase { border-bottom: 2px solid @black; font-size: 36px; padding-bottom: 6px; margin-bottom: 6px; }
+	.phrase { .text-shadow(@black 1px 1px 2px); border-bottom: 2px solid @black; font-size: 36px; padding-bottom: 12px; }
 	.notes { margin: 12px; }
-	.note { padding: 6px; }
+	.note { font-size: 22px; padding: 6px; }
+}
+.homepage {
+	.button { .green-button(); display: block; font-size: 22px; padding: 6px 0; text-align: center; width: 100%; }
 }
