@@ -1,3 +1,29 @@
 p Choose Deck
-each deckName in deckNames
-	button(deck-name=deckName)= deckName
+ul.decks
+	each deckName in deckNames
+		li.deck
+			button(deck-name=deckName)= deckName
+
+script
+	$('.game-container button').click(function(event) {
+		var deckName = $(this).attr('deck-name');
+		$.ajax({
+			url: '/json/decks/' + escape(deckName) + '/cards',
+			dataType: 'json',
+			success: function(cards, status) {
+				if (cards.length == 0) {
+					alert('No cards in deck');
+					return;
+				}
+
+				_.shuffle(cards);
+				abootay.game = {
+					deck: {
+						cards: cards
+					}
+				};
+
+				$('.game-container').html(abootay.render.game.showCard({ card: cards.pop() }));
+			}
+		})
+	});
