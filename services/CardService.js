@@ -27,14 +27,5 @@ var CardService = module.exports = {
 				);
 			});
 		});
-	},
-	getClientRenderer: function(callback) {
-		fs.readFile('views/cards/card.jade', function (err, jadeStr) {
-			if (err) return callback(err);
-
-			var render = jade.compile(jadeStr, { client: true});
-			render = 'abootay.namespace("render").card = ' + render.toString();
-			callback(null, render);
-		});
 	}
 };

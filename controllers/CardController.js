@@ -23,10 +23,5 @@ var CardController = module.exports = {
 		CardService.addCardToDeck(card, deck_name, function(err, numUpdated) {
 			res.redirect(path.to.deck(deck_name));
 		});
-	},
-	clientRenderer: function(req, res) {
-		CardService.getClientRenderer(function(err, render) {
-			res.send(render, { 'Content-Type' : 'text/javascript' });
-		});
 	}
 };
