@@ -1,1 +1,14 @@
-body { background: #fff; }
+.title-text { font-size: 36px; }
+.button { cursor: pointer; font-size: 16px; padding: 6px 12px; }
+.center-block() { margin: 0 auto; }
+.adaptive-width(@max-pixel-width, @max-percentage-width:92%) { width: @max-percentage-width; max-width: @max-pixel-width; }
+
+body { background: #fff; font-family: Helvetica, Arial, sans-serif; font-size: 20px; }
+
+h1 { .title-text(); margin: 12px 0; }
+article { .center-block(); .adaptive-width(320px); }
+.game-container {
+	button {
+		.button();
+	}
+}
