@@ -1,5 +1,8 @@
 var path = module.exports = {
 	to: {
+		home: function() {
+			return '/';
+		},
 		decks: function() {
 			return '/decks'
 		},
