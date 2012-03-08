@@ -7,7 +7,9 @@ block title
 	h1 Decks
 
 block article_content
-	include create-form
+	.create-form-container
+		h3 Add Deck
+		include create-form
 
 	.decks-container
 		h3 #{decks.length} Decks

@@ -52,7 +52,10 @@ body.home {
 	.button { .menu-item(); }
 }
 body.decks {
-	.create-deck-form { background: @yellow; padding: 16px; }
+	.create-form-container { background: @yellow; padding: 16px 0;
+		h3 { font-size: 24px; border-bottom: 2px solid darken(@yellow, 30%); padding: 0 16px 4px; }
+		.create-deck-form { margin: 16px 16px 0; }
+	}
 	.deck-name {
 		input { .text-input(); }
 	}
