@@ -1,23 +1,23 @@
 #!/bin/sh
 
-pid_file='scripts/node-server.pid'
+. config/server.sh
 
 # if server not running, quit
-if ! [ -f $pid_file ]
+if ! [ -f $PID_FILE ]
 then
 	echo "Server already stopped."
 	exit
 fi
 
 # read pid from file
-pid=`cat $pid_file`
+pid=`cat $PID_FILE`
 
 # kill the server process
 kill $pid
 echo "Killed server process with pid $pid."
 
 # delete the pid file
-rm $pid_file
-echo "Deleted pid file $pid_file"
+rm $PID_FILE
+echo "Deleted pid file $PID_FILE"
 
 echo
