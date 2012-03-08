@@ -6,12 +6,8 @@ block precompile
 block body_content
 	h1= deck.name
 
+	.deck-info #{deck.cards.length} Cards
+
 	.create-form-container
 		h3 Add Card
 		include ../cards/create-form.jade
-
-	.cards-container
-		h3 #{deck.cards.length} Cards
-		.phrases
-			each card in deck.cards
-				.phrase= card.phrase
