@@ -1,5 +1,6 @@
 logs/*
 node_modules/*
+*.pid
 config/*
 \.DS_Store
 *.css
