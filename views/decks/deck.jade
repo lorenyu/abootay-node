@@ -1,11 +1,13 @@
-extends ../layout
+extends layout
 
-block precompile
-	- bodyClass = 'deck'
+block append precompile
+	- bodyClass.push('deck')
+	- breadcrumbs.push({ title: deck.name, url: path.to.deck(deck) })
 
-block body_content
+block title
 	h1= deck.name
 
+block article_content
 	.deck-info #{deck.cards.length} Cards
 
 	.create-form-container

@@ -1,0 +1,12 @@
+extends ../layout
+
+block append precompile
+	- bodyClass.push('deck-layout')
+	- breadcrumbs.push({ title: 'Decks', url: path.to.decks() })
+
+block body_content
+	block breadcrumbs
+		include ../nav/breadcrumbs
+	block title
+	article
+		block article_content

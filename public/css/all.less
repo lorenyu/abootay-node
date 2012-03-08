@@ -27,7 +27,7 @@
 body { background: @white; color: @black; font-family: Helvetica, Arial, sans-serif; font-size: 20px; }
 
 h1 { .title-text(); .text-shadow(@black 1px 1px 2px); margin: 0 0 12px; }
-article { .center-block(); .adaptive-width(320px); .border-radius(12px); background: #fff; padding: 22px; margin-top: 22px; }
+.root-container { .center-block(); .adaptive-width(320px); .border-radius(12px); background: #fff; padding: 22px; margin-top: 22px; }
 .game-container {
 	button { .menu-item(); }
 }
@@ -36,11 +36,20 @@ article { .center-block(); .adaptive-width(320px); .border-radius(12px); backgro
 	.notes { margin: 12px; }
 	.note { font-size: 22px; padding: 6px; }
 }
+body {
+	.breadcrumbs {
+		.breadcrumb { display: inline; padding: 0 4px;
+			a { color: darken(@primary-blue, 20%); font-size: 18px; text-decoration: none;
+				&:hover { text-decoration: underline; }
+				&:before { content:'› '; }
+			}
+		}
+	}
+}
 body.homepage {
 	.button { .menu-item(); }
 }
 body.decks {
-	a { .menu-item(); }
 	.create-deck-form { background: @yellow; padding: 16px; }
 	.deck-name {
 		input { .text-input(); }
@@ -48,7 +57,11 @@ body.decks {
 	.submit { margin-top: 12px; text-align: center; 
 		input { .blue-button(); }
 	}
-	.decks { margin: 22px 0;}
+	.decks-container { margin: 22px 0;
+		h3 { font-size: 24px; }
+		.decks { margin: 12px 0;}
+		a { .menu-item(); }
+	}
 }
 body.deck {
 	.create-form-container { background: @yellow; padding: 16px 0;

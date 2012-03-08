@@ -1,12 +1,17 @@
-extends ../layout
+extends layout
 
-block precompile
-	- bodyClass = 'decks'
+block append precompile
+	- bodyClass.push('decks')
 
-block body_content
+block title
+	h1 Decks
+
+block article_content
 	include create-form
 
-	.decks
-		each deck in decks
-			.deck
-				a(href=path.to.deck(deck))= deck.name
+	.decks-container
+		h3 #{decks.length} Decks
+		.decks
+			each deck in decks
+				.deck
+					a(href=path.to.deck(deck))= deck.name

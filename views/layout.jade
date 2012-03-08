@@ -1,5 +1,6 @@
 block precompile
-	- bodyClass = ''
+	- bodyClass = []
+	- breadcrumbs = [{ title: 'Home', url: path.to.home() }]
 
 html
 	head
@@ -16,5 +17,5 @@ html
 			include css/all
 
 	body(class=bodyClass)
-		article
+		.root-container
 			block body_content
