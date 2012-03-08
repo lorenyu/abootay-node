@@ -24,10 +24,7 @@
 .text-input() { .adaptive-width(320px, 100%); font-size: 20px; display: block; line-height: 1.2em; }
 
 
-body { background: @white; color: @black; font-family: Helvetica, Arial, sans-serif; font-size: 20px; }
-
 h1 { .title-text(); .text-shadow(@black 1px 1px 2px); margin: 0 0 12px; }
-.root-container { .center-block(); .adaptive-width(320px); .border-radius(12px); background: #fff; padding: 22px; margin-top: 22px; }
 .game-container {
 	button { .menu-item(); }
 }
@@ -36,17 +33,22 @@ h1 { .title-text(); .text-shadow(@black 1px 1px 2px); margin: 0 0 12px; }
 	.notes { margin: 12px; }
 	.note { font-size: 22px; padding: 6px; }
 }
-body {
-	.breadcrumbs {
+#abootay {
+	.main-panel() { .border-radius(12px); background: #fff; padding: 22px; margin-top: 22px; }
+}
+body { background: @white; color: @black; font-family: Helvetica, Arial, sans-serif; font-size: 20px;
+	.breadcrumbs { margin: 4px;
 		.breadcrumb { display: inline; padding: 0 4px;
-			a { color: darken(@primary-blue, 20%); font-size: 18px; text-decoration: none;
-				&:hover { text-decoration: underline; }
+			a { color: darken(@primary-blue, 20%); font-size: 16px; text-decoration: none;
+				&:hover { color: @primary-blue; }
 				&:before { content:'› '; }
 			}
 		}
 	}
+	.root-container { .center-block(); .adaptive-width(320px); }
 }
-body.homepage {
+body.home {
+	.game-container { #abootay > .main-panel(); }
 	.button { .menu-item(); }
 }
 body.decks {
@@ -62,6 +64,10 @@ body.decks {
 		.decks { margin: 12px 0;}
 		a { .menu-item(); }
 	}
+}
+body.deck-layout {
+	.root-container { background: transparent; }
+	.page-content-container { #abootay > .main-panel(); }
 }
 body.deck {
 	.create-form-container { background: @yellow; padding: 16px 0;
