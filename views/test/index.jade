@@ -2,12 +2,21 @@ html
 	head
 		meta(charset="utf-8")
 		title Abootay Client Tests
+
 		link(rel="stylesheet", href="https://raw.github.com/visionmedia/mocha/master/mocha.css")
-		include ../js/lib/jquery
+
+		//- source files
+		include ../js/lib/index
+		include ../js/abootay
+
+		//- mocha test framework and chai assertion library
 		script(src="/js/lib/chai/chai.js")
 		script(src="https://raw.github.com/visionmedia/mocha/master/mocha.js")
+
+		//- set up mocha with 'exports' interface
 		script
 			mocha.setup('exports')
+
 		//-
 			<script src="test.array.js"></script>
 			<script src="test.object.js"></script>
