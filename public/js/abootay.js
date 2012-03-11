@@ -13,5 +13,7 @@
 		}
 		return cur;
 	};
+
+	abootay.models = {};
 	
 })(jQuery);
