@@ -16,6 +16,7 @@ app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(express.compiler({ src: __dirname + '/public', enable: ['less'] }));
 app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/test/browser'));
 
 app.set('view engine', 'jade');
 // need this to enable template inheritance in jade - 2012-03-03

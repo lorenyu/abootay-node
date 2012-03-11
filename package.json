@@ -30,7 +30,8 @@
 	},
 	"devDependencies": {
 		"mocha": "0.14.x",
-		"chai": "0.5.x"
+		"chai": "0.5.x",
+		"sinon-chai": "1.x.x"
 	},
 	"bundleDependencies": [
 	],
