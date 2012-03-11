@@ -29,7 +29,8 @@
 		"underscore.string": "2.x.x"
 	},
 	"devDependencies": {
-		"mocha": "0.14.x"
+		"mocha": "0.14.x",
+		"chai": "0.5.x"
 	},
 	"bundleDependencies": [
 	],

@@ -33,6 +33,10 @@ app.get('/', function(req, res){
 	res.render('index');
 });
 
+app.get('/test', function(req, res) {
+	res.render('test/index');
+});
+
 app.get('/js/renderers/*.js', controllers.RendererController.clientRenderer);
 
 app.get('/decks/:deckName', controllers.DeckController.deck);
