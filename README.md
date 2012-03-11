@@ -1,5 +1,5 @@
-Getting Started
-===============
+Getting Started with Development
+================================
 
 1. Install node.js
 2. Install npm (Node Package Manager)
@@ -12,16 +12,16 @@ Getting Started
 
 Running the Server
 ------------------
-```npm start```
+```$ npm start```
 
 Stopping the Server
 -------------------
-```npm stop```
+```$ npm stop```
 
 Restarting the Server
 ---------------------
-```npm restart```
+```$ npm restart```
 
 Running Tests
 -------------
-```npm test```
+```$ npm test```
