@@ -23,6 +23,11 @@ Restarting the Server
 ---------------------
 ```$ npm restart```
 
-Running Tests
--------------
+Running Server Tests
+--------------------
 ```$ npm test```
+
+Running Client Tests
+--------------------
+Run ```$ npm start```
+Then visit http://localhost/test/browser
