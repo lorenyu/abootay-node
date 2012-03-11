@@ -28,6 +28,9 @@
 		"underscore": "1.x.x",
 		"underscore.string": "2.x.x"
 	},
+	"devDependencies": {
+		"mocha": "0.14.x"
+	},
 	"bundleDependencies": [
 	],
 	"engine": {
