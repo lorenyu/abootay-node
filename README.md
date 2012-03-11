@@ -5,10 +5,11 @@ Getting Started with Development
 2. Install npm (Node Package Manager)
 3. Install mongodb
 4. clone the repository
+   ```$ git clone git@github.com:lorenyu/abootay-node.git```
 5. Install project dependencies:
-   ```npm install```
+   ```$ npm install```
 6. Run the server
-   ```npm start```
+   ```$ npm start```
 
 Running the Server
 ------------------
