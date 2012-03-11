@@ -6,10 +6,13 @@
 		_startTime: null,
 		_millisRemaining: 0,
 		_setTimeoutId: 0,
+		options: null,
 
-		initialize: function(millis) {
+		initialize: function(millis, options) {
 			this._millis = millis;
 			this.reset();
+
+			this.options = options || {};
 		},
 		millis: function() { // length in milliseconds
 			return this._millis;
@@ -32,7 +35,7 @@
 		start: function() {
 			if (this.isRunning()) return;
 			
-			this._startTime = new Date().getTime();
+			this._startTime = this._getTime();
 			this._setTimeoutId = setTimeout(_.bind(this._onTimerCompleted, this), this.millisRemaining());
 		},
 		stop: function() { // pauses the timer. Calling start will start the timer where it left off.
@@ -43,7 +46,7 @@
 			this._setTimeoutId = null;
 
 			// calculate the amount of time remaining
-			var timeElapsed = new Date().getTime() - this._startTime;
+			var timeElapsed = this._getTime() - this._startTime;
 			this._millisRemaining -= timeElapsed;
 		},
 		reset: function() { // Stops and resets the timer.
@@ -54,11 +57,14 @@
 			return this._setTimeoutId ? true : false;
 		},
 		_onTimerCompleted: function() {
-			this._setTimeoutId = null;
+			this.stop();
 
 			this.trigger('complete');
 
 			this.reset();
+		},
+		_getTime: function() {
+			return new Date().getTime();
 		}
 	});
 	
