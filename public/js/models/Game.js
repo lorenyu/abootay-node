@@ -20,6 +20,9 @@
 
 			this.on('change:currentCard', this._onNewCard);
 		},
+		start: function() {
+			this.trigger('game:start');
+		},
 		startTurn: function() {
 			this.set('cardsSeenThisTurn', []);
 			this.get('timer').start();
