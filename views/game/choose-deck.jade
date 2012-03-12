@@ -17,13 +17,12 @@ script
 				}
 
 				cards = _.shuffle(cards);
-				abootay.game = {
-					deck: {
-						cards: cards
-					}
-				};
-
-				$('.game-container').html(abootay.render.game.showCard({ card: cards.pop() }));
+				abootay.game = new abootay.models.Game({ cards: cards });
+				new abootay.views.CardView({
+					el: $('.game-container'),
+					model: abootay.game
+				});
+				abootay.game.startTurn();
 			}
 		})
 	});

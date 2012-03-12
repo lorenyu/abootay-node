@@ -6,14 +6,4 @@
 			.note= note
 .buttons
 	button Next
-
-script
-	$('.game-container button').click(function(event) {
-		if (abootay.game.deck.cards.length <= 0) {
-			alert('No cards left');
-			return;
-		}
-		var card = abootay.game.deck.cards.pop();
-		$('.game-container').html(abootay.render.game.showCard({ card: card }));
-	});
 	
