@@ -9,7 +9,7 @@
 		options: null,
 
 		initialize: function(millis, options) {
-			this._millis = millis;
+			this.setTimerLength(millis);
 			this.reset();
 
 			this.options = options || {};
@@ -36,7 +36,7 @@
 			if (this.isRunning()) return;
 			
 			this._startTime = this._getTime();
-			this._setTimeoutId = setTimeout(_.bind(this._onTimerCompleted, this), this.millisRemaining());
+			this._setTimeoutId = setTimeout(_.bind(this._onTimerComplete, this), this.millisRemaining());
 		},
 		stop: function() { // pauses the timer. Calling start will start the timer where it left off.
 			if (!this.isRunning()) return;
@@ -56,7 +56,10 @@
 		isRunning: function() {
 			return this._setTimeoutId ? true : false;
 		},
-		_onTimerCompleted: function() {
+		setTimerLength: function(millis) { // set length of timer in milliseconds
+			this._millis = millis;
+		},
+		_onTimerComplete: function() {
 			this.stop();
 
 			this.trigger('complete');
