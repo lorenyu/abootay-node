@@ -8,6 +8,7 @@
 		},
 		render: function() {
 			this.$el.html(abootay.render.game.showCard({card: this.model.get('currentCard')}));
+			return this;
 		}
 	});
 	

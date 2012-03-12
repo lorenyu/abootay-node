@@ -8,6 +8,7 @@
 		},
 		render: function() {
 			this.$el.html(abootay.render.game.turnSummary({ cardsSeenThisTurn: this.model.get('cardsSeenThisTurn')}));
+			return this;
 		}
 	});
 	
