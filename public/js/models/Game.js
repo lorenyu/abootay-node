@@ -15,7 +15,7 @@
 
 			this.set('deck', deck);
 			this.get('deck').cards = _.shuffle(this.get('deck').cards);
-			this.set('timer', new abootay.models.Timer(5*1000)); // set timer to 1 minute
+			this.set('timer', new abootay.models.Timer(60*1000)); // set timer to 1 minute
 			this.get('timer').on('complete', this._onTimerComplete);
 
 			this.on('change:currentCard', this._onNewCard);
