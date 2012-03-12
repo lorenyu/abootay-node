@@ -17,26 +17,37 @@
 			this.get('deck').cards = _.shuffle(this.get('deck').cards);
 			this.set('timer', new abootay.models.Timer(5*1000)); // set timer to 1 minute
 			this.get('timer').on('complete', this._onTimerComplete);
+
+			this.on('change:currentCard', this._onNewCard);
 		},
 		startTurn: function() {
+			this.set('cardsSeenThisTurn', []);
 			this.get('timer').start();
+
+			if (this.get('deck').cards.length <= 0) {
+				alert('No cards left');
+				return;
+			}
+
+			this.trigger('turn:start');
 			this.showNextCard();
 		},
 		endTurn: function() {
-			this.showTurnSummary();
+			this.trigger('turn:end');
 		},
 		showNextCard: function() {
 			if (this.get('deck').cards.length <= 0) {
 				alert('No cards left');
 				return;
 			}
-			this.set('currentCard', this.get('deck').cards.pop());
-		},
-		showTurnSummary: function() {
-			this._render(abootay.render.game.turnSummary());
+			var card = this.get('deck').cards.pop();
+			this.set('currentCard', card);
 		},
 		_onTimerComplete: function() {
 			this.endTurn();
+		},
+		_onNewCard: function(model, card) {
+			this.get('cardsSeenThisTurn').push(card);
 		},
 		_render: function(html) {
 			$('.game-container').html(html);

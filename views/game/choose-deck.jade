@@ -18,10 +18,11 @@ script
 
 				cards = _.shuffle(cards);
 				abootay.game = new abootay.models.Game({ cards: cards });
-				new abootay.views.CardView({
+				new abootay.views.GameView({
 					el: $('.game-container'),
 					model: abootay.game
 				});
+				
 				abootay.game.startTurn();
 			}
 		})
