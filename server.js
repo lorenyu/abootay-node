@@ -50,6 +50,8 @@ app.get('/json/decks/names', controllers.DeckController.deckNamesJSON);
 
 app.put('/cards/create', controllers.CardController.addCardToDeck);
 
+app.get('/play', controllers.GameController.play);
+app.get('/play/:deckName', controllers.GameController.playDeck);
 app.get('/games/:deckName', controllers.GameController.start);
 
 app.listen(8805);

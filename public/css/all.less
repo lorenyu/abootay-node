@@ -28,7 +28,7 @@
 
 h1 { .title-text(); .text-shadow(@black 1px 1px 2px); margin: 0 0 12px; }
 .game-container {
-	button { .menu-item(); }
+	button, .button { .menu-item(); }
 }
 .card { text-align: center;
 	.phrase { .text-shadow(@black 1px 1px 2px); border-bottom: 2px solid @black; font-size: 36px; padding-bottom: 12px; }
@@ -49,8 +49,11 @@ body { background: @white; color: @black; font-family: Helvetica, Arial, sans-se
 	}
 	.root-container { .center-block(); .adaptive-width(320px); }
 }
+body.home, body.play, body.play-deck {
+	.game-container { #abootay > .main-panel(); }
+}
 body.home {
-	.game-container { #abootay > .main-panel();
+	.game-container {
 		.turn-summary {
 			h3 { .text-shadow(@black 1px 1px 2px); border-bottom: 2px solid darken(@gray, 10%); font-size: 24px; padding-bottom: 12px; }
 			.phrase { line-height: 1.6em; } 
@@ -90,4 +93,6 @@ body.deck {
 		}
 	}
 	.deck-info { font-size: 24px; margin-bottom: 12px;}
+	.button { .menu-item(); }
+	.play { margin-top: 24px; }
 }

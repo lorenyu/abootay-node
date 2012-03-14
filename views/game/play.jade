@@ -1,0 +1,8 @@
+extends ../layout
+
+block append precompile
+	- bodyClass.push('play')
+
+block body_content
+	.game-container
+		include choose-deck

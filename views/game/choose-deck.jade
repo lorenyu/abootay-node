@@ -2,7 +2,7 @@ h1 Choose Deck
 ul.decks
 	each deckName in deckNames
 		li.deck
-			button(deck-name=deckName)= deckName
+			a.button(href=path.to.playDeck(deckName))= deckName
 
 script
 	$('.game-container button').click(function(event) {
