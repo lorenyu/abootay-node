@@ -37,6 +37,8 @@ describe('Timer', function() {
 				clock.tick(500); // elapse time by 0.5 seconds
 				timer.stop();
 
+				clock.tick(1000);
+
 				// there should be only 0.5 seconds left on the timer now
 				timer.start();
 				clock.tick(499);
@@ -90,15 +92,76 @@ describe('Timer', function() {
 				timer.isRunning().should.be.false;
 			});
 		});
+		describe('#millisRemaining()', function() {
+			it('should return the number of milliseconds remaining', function() {
+				timer.start();
+				clock.tick(100);
+				timer.millisRemaining().should.equal(900);
+			});
+			it('should return the correct number of milliseconds remaining even if timer stopped for a while', function() {
+				timer.start();
+				clock.tick(100);
+				timer.stop();
+				clock.tick(1000);
+				timer.millisRemaining().should.equal(900);
+			});
+			it('should return the correct number of milliseconds remaining even if timer stopped for a while then started again', function() {
+				timer.start();
+				clock.tick(100);
+				timer.stop();
+				clock.tick(1000);
+				timer.start();
+				clock.tick(100);
+				timer.millisRemaining().should.equal(800);
+			});
+		});
 	});
 	describe('Events', function() {
 		describe('complete', function() {
+			var onComplete;
+			beforeEach(function() {
+				onComplete = sinon.spy();
+			});
 			it('should be triggered when the timer finishes running', function() {
-				var onComplete = sinon.spy();
 				timer.on('complete', onComplete);
 				timer.start();
 				clock.tick(1000);
 				onComplete.should.have.been.called;
+			});
+		});
+		describe('tick:second', function() {
+			var onTick;
+			beforeEach(function() {
+				timer = new abootay.models.Timer(10000);
+				onTick = sinon.spy();
+				timer.on('tick:second', onTick);
+			});
+			it('should be triggered every second while the timer is running', function() {
+				timer.start();
+				clock.tick(999);
+				onTick.should.not.have.been.called;
+				clock.tick(1);
+				onTick.should.have.been.called;
+				clock.tick(1000);
+				onTick.should.have.been.calledTwice;
+				clock.tick(7000);
+				onTick.callCount.should.equal(9);
+			});
+			it('should not be triggered when the timer is stopped', function() {
+				timer.start();
+				clock.tick(999);
+				timer.stop();
+				clock.tick(10000);
+				onTick.should.not.have.been.called;
+			});
+			it('should be triggered every second after the timer has been started again after being stopped', function() {
+				timer.start();
+				clock.tick(999);
+				timer.stop();
+				clock.tick(10000);
+				timer.start();
+				clock.tick(9000);
+				onTick.callCount.should.equal(9);
 			});
 		});
 	});
