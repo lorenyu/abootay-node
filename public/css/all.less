@@ -31,7 +31,7 @@ h1 { .title-text(); .text-shadow(@black 1px 1px 2px); margin: 0 0 12px; }
 	button, .button { .menu-item(); }
 }
 .card { text-align: center;
-	.phrase { .text-shadow(@black 1px 1px 2px); border-bottom: 2px solid @black; font-size: 36px; padding-bottom: 12px; }
+	.phrase { .text-shadow(@black 1px 1px 2px); font-size: 36px; padding-bottom: 12px; }
 	.notes { margin: 12px; }
 	.note { font-size: 22px; padding: 6px; }
 }
@@ -60,6 +60,11 @@ body.home {
 		}
 	}
 	.button { .menu-item(); }
+}
+body.play-deck {
+	.timer {
+		.time-left { background: rgb(33,40,42); height: 2px; }
+	}
 }
 body.decks {
 	.create-form-container { background: @yellow; padding: 16px 0;
