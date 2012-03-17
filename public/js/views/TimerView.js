@@ -9,7 +9,7 @@
 			d3.select(this.el)
 			  .append('div')
 			  .classed('time-left', true)
-			  .style('width', (this.percentTimeLeft() * 276) + 'px')
+			  .style('width', this.percentTimeLeft() * this.$el.width())
 			  .style('background-color', this.rgbInterpolate(this.percentTimeLeft()));
 
 			this.model.on('tick:second', _.bind(this.render, this));
@@ -18,7 +18,7 @@
 			d3.select(this.el)
 			  .select('.time-left')
 			  .transition()
-			  .style('width', (this.percentTimeLeft() * 276) + 'px')
+			  .style('width', this.percentTimeLeft() * this.$el.width())
 			  .style('background-color', this.rgbInterpolate(this.percentTimeLeft()));
 			return this;
 		},
