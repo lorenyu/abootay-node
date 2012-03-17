@@ -23,7 +23,7 @@
 			return this;
 		},
 		percentTimeLeft: function() {
-			return this.model.millisRemaining() / this.model.millis();
+			return Math.floor(this.model.secondsRemaining()) / this.model.seconds();
 		},
 		rgbInterpolate: function(t) {
 			return this._rgbInterpolator(t);
