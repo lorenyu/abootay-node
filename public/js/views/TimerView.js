@@ -10,7 +10,7 @@
 			  .append('div')
 			  .classed('time-left', true)
 			  .style('width', this.percentTimeLeft() * this.$el.width())
-			  .style('background-color', this.rgbInterpolate(this.percentTimeLeft()));
+			  .style('background-color', this.color());
 
 			this.model.on('tick:second', _.bind(this.render, this));
 		},
@@ -19,14 +19,14 @@
 			  .select('.time-left')
 			  .transition()
 			  .style('width', this.percentTimeLeft() * this.$el.width())
-			  .style('background-color', this.rgbInterpolate(this.percentTimeLeft()));
+			  .style('background-color', this.color());
 			return this;
 		},
 		percentTimeLeft: function() {
 			return Math.floor(this.model.secondsRemaining()) / this.model.seconds();
 		},
-		rgbInterpolate: function(t) {
-			return this._rgbInterpolator(t);
+		color: function() {
+			return this._rgbInterpolator(this.percentTimeLeft());
 		}
 	});
 	
