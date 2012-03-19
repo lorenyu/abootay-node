@@ -26,4 +26,4 @@ block body_content
 					abootay.game.start();
 				}
 			})
-		})('#{ deck.name }');
+		})('#{ deck.name.replace(/'/g, "\\'") }');
