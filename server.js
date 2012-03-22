@@ -50,6 +50,7 @@ app.param('deckName', controllers.DeckController.paramDeckName);
 app.put('/decks/create', controllers.DeckController.create);
 app.get('/json/decks/:deckName/cards', controllers.CardController.cardsJSON);
 app.get('/json/decks/names', controllers.DeckController.deckNamesJSON);
+app.get('/json/*', controllers.ClientDataController.serverClientData);
 
 app.put('/cards/create', controllers.CardController.addCardToDeck);
 
