@@ -21,6 +21,7 @@
 
 				if (cards.length == 0) {
 					alert('No cards in deck');
+					window.history.go(-1);
 					return;
 				}
 
