@@ -29,15 +29,11 @@
 			});
 		}
 	};
-	_.extend(data.get, {
-		deck: {
-			names: function(callback) {
-				data.get('deck', 'get-deck-names', callback);
-			},
-			cards: function(deckName, callback) {
-				data.get('card', 'get-cards-for-deck', deckName, callback);
-			}
-		}
-	});
+	data.get.deck = function(deckName, callback){
+		data.get('deck', 'get-deck-by-name', deckName, callback);
+	};
+	data.get.deck.names = function(callback) {
+		data.get('deck', 'get-deck-names', callback);
+	}
 
 })();

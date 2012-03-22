@@ -2,28 +2,11 @@ h1 Choose Deck
 ul.decks
 	each deckName in deckNames
 		li.deck
-			a.button(href=path.to.playDeck(deckName))= deckName
+			a.button(href=path.to.playDeck(deckName), deck-name=deckName)= deckName
 
 script
-	$('.game-container button').click(function(event) {
+	$('.game-container .button').click(function(event) {
+		event.preventDefault();
 		var deckName = $(this).attr('deck-name');
-		$.ajax({
-			url: '/json/decks/' + escape(deckName) + '/cards',
-			dataType: 'json',
-			success: function(cards, status) {
-				if (cards.length == 0) {
-					alert('No cards in deck');
-					return;
-				}
-
-				cards = _.shuffle(cards);
-				abootay.game = new abootay.models.Game({ cards: cards });
-				new abootay.views.GameView({
-					el: $('.game-container'),
-					model: abootay.game
-				});
-				
-				abootay.game.start();
-			}
-		})
+		abootay.router.navigate('play/' + deckName , { trigger: true });
 	});

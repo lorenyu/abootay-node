@@ -15,8 +15,24 @@
 				$('.game-container').html(abootay.render.game.chooseDeck({ deckNames: deckNames, path: abootay.path }));
 			});
 		},
-		playDeck: function() {
-			console.log('playDeck');
+		playDeck: function(deckName) {
+			abootay.data.get.deck(deckName, function(err, deck) {
+				var cards = deck.cards;
+
+				if (cards.length == 0) {
+					alert('No cards in deck');
+					return;
+				}
+
+				cards = _.shuffle(cards);
+				abootay.game = new abootay.models.Game({ cards: cards });
+				new abootay.views.GameView({
+					el: $('.game-container'),
+					model: abootay.game
+				});
+				
+				abootay.game.start();
+			});
 		}
 	});
 
