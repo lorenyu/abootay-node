@@ -39,6 +39,9 @@ app.get('/test/browser', function(req, res) {
 });
 
 app.get('/js/renderers/*.js', controllers.RendererController.clientRenderer);
+app.get('/js/path.js', function(req,res){
+	res.sendfile('path.js');
+});
 
 app.get('/decks/:deckName', controllers.DeckController.deck);
 
