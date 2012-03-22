@@ -1,4 +1,10 @@
-var path = module.exports = {
+(function(path, undefined) {
+	if (typeof module !== 'undefined') {
+		module.exports = path;
+	} else if (typeof window !== 'undefined') {
+		window.abootay.path = path;
+	}
+})({
 	to: {
 		home: function() {
 			return '/';
@@ -34,4 +40,4 @@ var path = module.exports = {
 			return '/play/' + escape(deckName);
 		}
 	}
-};
+});
