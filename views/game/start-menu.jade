@@ -1,0 +1,9 @@
+h1 Abootay
+	.options
+		a.play.button(href=path.to.play()) Play
+		a.create.button(href=path.to.decks()) Create
+script
+	$('.play.button').click(function(event) {
+		event.preventDefault();
+		abootay.router.navigate('play', { trigger: true });
+	});

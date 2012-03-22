@@ -5,23 +5,9 @@ block append precompile
 
 block append scripts
 	script
-
 		$(document).ready(function() {
-			$('.play').click(function(event) {
-				$.ajax({
-					url: '/json/decks/names',
-					dataType: 'json',
-					success: function(deckNames, status) {
-						abootay.deckNames = deckNames;
-						$('.game-container').html(abootay.render.game.chooseDeck({ deckNames: deckNames }));
-					}
-				});
-			});
 		});
 
 block body_content
 	.game-container
-		h1 Abootay
-		.options
-			a.play.button(href=path.to.play()) Play
-			a.create.button(href=path.to.decks()) Create
+		include game/start-menu
