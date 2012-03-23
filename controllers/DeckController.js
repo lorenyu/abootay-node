@@ -10,6 +10,14 @@ var DeckController = module.exports = {
 			next();
 		});
 	},
+	paramDeckId: function(req, res, next, deckId) {
+		DeckService.getDeckById(deckId, function(err, deck) {
+			if (err) return next(err);
+
+			req.deck = deck;
+			next();
+		});
+	},
 	deckNamesJSON: function(req, res) {
 		DeckService.getDeckNames(function(err, deckNames) {
 			if (err) { console.error(err); res.send(err); }
@@ -25,6 +33,9 @@ var DeckController = module.exports = {
 				decks: decks
 			});
 		});
+	},
+	deckByIdJSON: function(req, res) {
+		res.json(req.deck);
 	},
 	deck: function(req, res) {
 		res.render('decks/deck', {

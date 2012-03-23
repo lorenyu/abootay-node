@@ -14,6 +14,18 @@ var DeckService = module.exports = {
 						deck.cards = [];
 					}
 
+	getDeckById: function(deckId, callback) {
+		db.open(function(err, db) {
+			if (err) return callback(err);
+
+			db.collection('decks', function(err, decks) {
+				decks.findOne({ _id: ObjectID.createFromHexString(deckId) }, function(err, deck) {
+					if (err) return callback(err);
+
+					if (!deck.cards) {
+						deck.cards = [];
+					}
+
 					callback(null, deck);
 				});
 			});
