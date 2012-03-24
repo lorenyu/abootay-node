@@ -10,9 +10,9 @@ var CardController = module.exports = {
 		});
 	},
 	addCardToDeck: function(req, res) {
-		var deck_name = req.body.deck_name
-		phrase = req.body.phrase,
-		notes = _.map(req.body.notes.split('\n'), function (note) {
+		var deckName = req.deck.name;
+		phrase = req.param('phrase'),
+		notes = _.map(req.param('notes').split('\n'), function (note) {
 			return _s.trim(note);
 		}),
 		card = {
@@ -20,8 +20,8 @@ var CardController = module.exports = {
 			notes: notes
 		};
 
-		CardService.addCardToDeck(card, deck_name, function(err, numUpdated) {
-			res.redirect(path.to.deck(deck_name));
+		CardService.addCardToDeck(card, deckName, function(err, numUpdated) {
+			res.redirect(path.to.deck(deckName));
 		});
 	}
 };

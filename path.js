@@ -38,6 +38,17 @@
 				deckName = deck.name;
 			}
 			return '/play/' + escape(deckName);
+		},
+		api: {
+			root: function() {
+				return '/api';
+			},
+			deck: function(deck) {
+				return this.root() + '/deck/' + deck._id;
+			},
+			addCardToDeck: function(deck) {
+				return this.deck(deck) + '/card';
+			}
 		}
 	}
 });

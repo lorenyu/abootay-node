@@ -1,6 +1,4 @@
-form.create-card-form(action='/cards/create', method='post')
-	input(type='hidden', name='_method', value='put')
-	input(type='hidden', name='deck_name', value=deck.name)
+form.create-card-form(action=path.to.api.addCardToDeck(deck), method='post')
 	.phrase
 		label Phrase
 		input(type='text', name='phrase')
