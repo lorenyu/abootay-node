@@ -46,6 +46,9 @@
 			deck: function(deck) {
 				return this.root() + '/deck/' + deck._id;
 			},
+			createDeck: function() {
+				return this.root() + '/deck'
+			},
 			addCardToDeck: function(deck) {
 				return this.deck(deck) + '/card';
 			}

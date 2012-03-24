@@ -1,5 +1,4 @@
-form.create-deck-form(action='/decks/create', method='post')
-	input(type='hidden', name='_method', value='put')
+form.create-deck-form(action=path.to.api.createDeck(), method='post')
 	.deck-name
 		label Deck Name:
 		input(type='text', name='name')
