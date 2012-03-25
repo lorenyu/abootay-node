@@ -11,7 +11,6 @@ var UserController = module.exports = {
 		});
 	},
 	user: function(req, res) {
-		console.log(req.user);
 		res.json(req.user);
 	},
 	create: function(req, res) {
