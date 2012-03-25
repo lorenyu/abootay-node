@@ -14,6 +14,11 @@ html
 			include js/abootay
 			include css/reset
 			include css/all
+			script
+				$(document).ready(function() {
+					abootay.user = abootay.models.User.loadOrCreateUser();
+					new abootay.models.App();
+				});
 
 	body(class=bodyClass)
 		.root-container
