@@ -14,6 +14,11 @@ var DeckService = module.exports = {
 						deck.cards = [];
 					}
 
+					callback(null, deck);
+				});
+			});
+		});
+	},
 	getDeckById: function(deckId, callback) {
 		db.open(function(err, db) {
 			if (err) return callback(err);
