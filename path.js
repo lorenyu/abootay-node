@@ -43,14 +43,26 @@
 			root: function() {
 				return '/api';
 			},
-			deck: function(deck) {
-				return this.root() + '/deck/' + deck._id;
+			deckRoot: function() {
+				return this.root() + '/deck';
 			},
 			createDeck: function() {
-				return this.root() + '/deck'
+				return this.deckRoot();
+			},
+			deck: function(deck) {
+				return this.deckRoot() + '/' + deck._id;
 			},
 			addCardToDeck: function(deck) {
 				return this.deck(deck) + '/card';
+			},
+			userRoot: function() {
+				return this.root() + '/user';
+			},
+			createUser: function() {
+				return this.userRoot();
+			},
+			user: function(user) {
+				return this.userRoot() + '/' + user._id;
 			}
 		}
 	}
