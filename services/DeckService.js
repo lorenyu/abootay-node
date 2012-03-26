@@ -1,4 +1,5 @@
 var db = require('../db'),
+	ObjectID = require('mongodb').ObjectID,
 	_ = require('underscore');
 
 var DeckService = module.exports = {
