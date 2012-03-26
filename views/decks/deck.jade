@@ -15,3 +15,16 @@ block article_content
 		include ../cards/create-form.jade
 
 	a.play.button(href=path.to.playDeck(deck)) Play Now
+
+	button.button.show-cards Show Cards
+	.cards
+		each card in deck.cards
+			.card= card.phrase
+	script
+		$('.show-cards').click(function(event){
+			var cards = $('.cards');
+			cards.toggleClass('show');
+			if (cards.hasClass('show')) {
+				scrollTo(0, cards.position().top);
+			}
+		});
