@@ -12,12 +12,8 @@ var CardController = module.exports = {
 	addCardToDeck: function(req, res) {
 		var deckName = req.deck.name;
 		phrase = req.param('phrase'),
-		notes = _.map(req.param('notes').split('\n'), function (note) {
-			return _s.trim(note);
-		}),
 		card = {
-			phrase: phrase,
-			notes: notes
+			phrase: phrase
 		};
 
 		CardService.addCardToDeck(card, deckName, function(err, numUpdated) {
