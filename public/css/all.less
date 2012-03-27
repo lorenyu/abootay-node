@@ -8,11 +8,14 @@
 @gray: #D1CCBC;
 @black: #21282A;
 
+@import url(/css/animations.css);
+
 .center-block() { margin-left: auto; margin-right: auto; }
 .adaptive-width(@max-pixel-width, @max-percentage-width:92%) { width: @max-percentage-width; max-width: @max-pixel-width; }
 .border-radius(@radius) { -webkit-border-radius: @radius; -moz-border-radius: @radius; border-radius: @radius; }
 .box-shadow(@params) { -webkit-box-shadow: @params; -moz-box-shadow: @params; box-shadow: @params; }
 .text-shadow(@params) { -webkit-text-shadow: @params; -moz-box-text-shadow: @params; text-shadow: @params; }
+.animation(@params) { -webkit-animation: @params; -moz-animation: @params; -ms-animation: @params; animation: @params; }
 .title-text { font-size: 36px; }
 .green-button() { .box-shadow(1px 1px 2px @black); background: @green; color: @black; cursor: pointer; border-width: 0; cursor: pointer; font-size: 16px; padding: 6px 12px; text-decoration: none;
 	&:hover { background: spin(@green, 20%); }
@@ -31,7 +34,7 @@ h1 { .title-text(); .text-shadow(@black 1px 1px 2px); margin: 0 0 12px; }
 	button, .button { .menu-item(); }
 }
 .card { text-align: center;
-	.phrase { .text-shadow(@black 1px 1px 2px); font-size: 36px; padding-bottom: 12px; }
+	.phrase {.animation(word-animation 0.4s ease-in-out); .text-shadow(@black 1px 1px 2px); font-size: 36px; padding-bottom: 12px; }
 	.notes { margin: 12px; }
 	.note { font-size: 22px; padding: 6px; }
 }
