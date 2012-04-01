@@ -2,5 +2,6 @@ logs/*
 node_modules/*
 *.pid
 config/*
+data/*
 \.DS_Store
 *.css
