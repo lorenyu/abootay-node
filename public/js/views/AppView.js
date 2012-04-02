@@ -11,10 +11,12 @@
 		},
 		navigate: function(event) {
 			var href = $(event.target).attr('href');
-			abootay.router.navigate(href);
-			if (Backbone.history.loadUrl(href)) {
+
+			if (Backbone.history.getUrlHandler(href)) {
+				abootay.router.navigate(href, {trigger:true});
 				event.preventDefault();
 			}
+
 		}
 	});
 	

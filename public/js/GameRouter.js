@@ -1,6 +1,40 @@
 (function($) {
 	var abootay = this.abootay;
 
+	Backbone.History.prototype.getUrlHandler = function(fragmentOverride){
+		var fragment = this.getFragment(fragmentOverride);
+		var handler = _.find(this.handlers, function(handler) {
+			if (handler.route.test(fragment)) {
+				return true;
+			}
+		});
+		return handler;
+	};
+
+	var _start = Backbone.History.prototype.start;
+	Backbone.History.prototype.start = function(options) {
+		this._curlUrl = null;
+		var result = _start.apply(this, arguments);
+		if (options && options.silent) {
+			this._curUrl = this.fragment;
+		}
+	};
+
+	var _loadUrl = Backbone.History.prototype.loadUrl;
+	Backbone.History.prototype.loadUrl = function() {
+		if (this._curUrl !== null) {
+			Backbone.history.trigger('leaveurl', this, this._curUrl);
+		}
+		var result = _loadUrl.apply(this, arguments);
+		this._curUrl = this.fragment;
+		return result;
+	};
+
+	var _navigate = Backbone.History.prototype.navigate;
+	Backbone.History.prototype.navigate = function() {
+		return _navigate.apply(this, arguments);
+	};
+
 	abootay.GameRouter = Backbone.Router.extend({
 		routes: {
 			'': 				'index', 
