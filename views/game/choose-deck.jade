@@ -3,10 +3,3 @@ ul.decks
 	each deckName in deckNames
 		li.deck
 			a.button(href=path.to.playDeck(deckName), deck-name=deckName)= deckName
-
-script
-	$('.game-container .button').click(function(event) {
-		event.preventDefault();
-		var deckName = $(this).attr('deck-name');
-		abootay.router.navigate('play/' + deckName , { trigger: true });
-	});

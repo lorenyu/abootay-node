@@ -17,7 +17,11 @@ html
 			script
 				$(document).ready(function() {
 					abootay.user = abootay.models.User.loadOrCreateUser();
-					new abootay.models.App();
+					abootay.app = new abootay.models.App();
+					new abootay.views.AppView({
+						el: document.body,
+						model: abootay.app
+					});
 				});
 
 	body(class=bodyClass)
