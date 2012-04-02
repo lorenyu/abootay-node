@@ -51,20 +51,19 @@
 		},
 		playDeck: function(deckName) {
 			abootay.data.get.deck(deckName, function(err, deck) {
-				var cards = deck.cards;
-
-				if (cards.length == 0) {
+				if (deck.cards.length == 0) {
 					alert('No cards in deck');
 					window.history.go(-1);
 					return;
 				}
 
-				cards = _.shuffle(cards);
-				abootay.game = new abootay.models.Game({ cards: cards });
-				new abootay.views.GameView({
-					el: $('.game-container'),
+				deck.cards = _.shuffle(deck.cards);
+				abootay.game = new abootay.models.Game(deck);
+				var gameView = new abootay.views.GameView({
 					model: abootay.game
 				});
+
+				$('.game-container').html(gameView.el);
 				
 				abootay.game.start();
 			});
@@ -74,5 +73,11 @@
 	abootay.router = new abootay.GameRouter();
 
 	Backbone.history.start({pushState: true, silent: true});
+
+	Backbone.history.on('route',function(){
+		if (abootay.game) {
+			abootay.game.get('timer').reset();
+		}
+	});
 	
 })(jQuery);
