@@ -37,7 +37,7 @@
  * Abootay Mixins
  */
 #abootay {
-	.main-panel() { border: solid 12px; #translucent > .border(@white, 0.2); .border-radius(12px); #gradient > .vertical(@deep-blue-light, @deep-blue-dark); padding: 22px; margin-top: 12px; }
+	.main-panel() { border: solid 12px; #translucent > .border(@white, 0.1); .border-radius(12px); #gradient > .vertical(@deep-blue-light, @deep-blue-dark); padding: 22px; margin-top: 12px; }
 	.title-text() { .text-shadow(@black -1px -1px 2px); font-size: 34px; margin-bottom: 12px; }
 	.menu-item() { .blue-button(); display: block; font-size: 22px; margin: 2px 0; padding: 6px 0; text-align: center; width: 100%; }
 	#nav {
@@ -83,7 +83,7 @@
 /*
  * Global Styles
  */
- body { background: @black; color: @white; font-family: Helvetica, Arial, sans-serif; font-size: 20px; }
+ body { #gradient > .vertical(@deep-blue-dark, @black); color: @white; font-family: Helvetica, Arial, sans-serif; font-size: 20px; margin: 0; padding: 13px 0 0; }
  h1 { #abootay > .title-text(); }
 .breadcrumbs { #abootay > #nav > .breadcrumbs(); }
 .root-container { .center-block(); .adaptive-width(320px); }
