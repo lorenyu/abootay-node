@@ -1,3 +1,9 @@
+@import "/public/css/bootstrap";
+
+@deep-blue-light: rgb(0, 170, 240);
+@ocean-blue-highlight: rgb(0, 230, 252);
+@deep-blue-dark: rgb(6, 22, 52);
+@ocean-green: rgb(0, 181, 63);
 @primary-blue: #00EFFC;
 @secondary-blue: #11FFFB;
 @green: #B2FF55;
@@ -6,7 +12,7 @@
 
 @white: #E6FEFF;
 @gray: #D1CCBC;
-@black: #21282A;
+@black: rgb(8, 6, 16);
 
 @import url(/css/animations.css);
 
@@ -16,93 +22,110 @@
 .box-shadow(@params) { -webkit-box-shadow: @params; -moz-box-shadow: @params; box-shadow: @params; }
 .text-shadow(@params) { -webkit-text-shadow: @params; -moz-box-text-shadow: @params; text-shadow: @params; }
 .animation(@params) { -webkit-animation: @params; -moz-animation: @params; -ms-animation: @params; animation: @params; }
-.title-text { font-size: 36px; }
-.green-button() { .box-shadow(1px 1px 2px @black); background: @green; color: @black; cursor: pointer; border-width: 0; cursor: pointer; font-size: 16px; padding: 6px 12px; text-decoration: none;
-	&:hover { background: spin(@green, 20%); }
-	&:active { .box-shadow(inset 1px 1px 2px @black); background: darken(@green, 20%); }
+
+.green-button() { .box-shadow(1px 1px 6px @black); background: @ocean-green; color: @black; cursor: pointer; border-width: 0; cursor: pointer; font-size: 16px; padding: 6px 12px; text-decoration: none;
+	&:hover { background: lighten(@ocean-green, 10%); }
+	&:active { .box-shadow(inset 1px 1px 2px @black); background: @ocean-green; }
 }
-.blue-button() { .box-shadow(1px 1px 2px @black); background: @secondary-blue; color: @black; border-width: 0; cursor: pointer; font-size: 16px; padding: 6px 12px; text-decoration: none;
-	&:hover { background: lighten(@secondary-blue, 20%); }
-	&:active { .box-shadow(inset 1px 1px 2px @black); background: darken(@secondary-blue, 20%); }
+.blue-button() { .box-shadow(1px 1px 2px @black); #gradient > .vertical(@ocean-blue-highlight, @deep-blue-light); color: @black; border-width: 0; cursor: pointer; font-size: 16px; padding: 6px 12px; text-decoration: none;
+	&:hover { }
+	&:active { .box-shadow(inset 1px 1px 2px @black); #gradient > .vertical(darken(@ocean-blue-highlight, 10%), darken(@deep-blue-light, 10%)); }
 }
-.menu-item() { .green-button(); display: block; font-size: 22px; padding: 6px 0; text-align: center; width: 100%; }
-.text-input() { .adaptive-width(320px, 100%); font-size: 20px; display: block; line-height: 1.2em; }
 
 
-h1 { .title-text(); .text-shadow(@black 1px 1px 2px); margin: 0 0 12px; }
-.game-container {
-	button, .button { .menu-item(); }
-}
-.card { text-align: center;
-	.phrase {.animation(word-animation 0.4s ease-in-out); .text-shadow(@black 1px 1px 2px); font-size: 36px; padding-bottom: 12px; }
-	.notes { margin: 12px; }
-	.note { font-size: 22px; padding: 6px; }
-}
+/*
+ * Abootay Mixins
+ */
 #abootay {
-	.main-panel() { .border-radius(12px); background: #fff; padding: 22px; margin-top: 22px; }
-}
-body { background: @white; color: @black; font-family: Helvetica, Arial, sans-serif; font-size: 20px;
-	.breadcrumbs { margin: 4px;
-		.breadcrumb { display: inline; padding: 0 4px;
-			a { color: darken(@primary-blue, 20%); font-size: 16px; text-decoration: none;
-				&:hover { color: @primary-blue; }
-				&:before { content:'› '; }
+	.main-panel() { border: solid 12px; #translucent > .border(@white, 0.2); .border-radius(12px); #gradient > .vertical(@deep-blue-light, @deep-blue-dark); padding: 22px; margin-top: 12px; }
+	.title-text() { .text-shadow(@black -1px -1px 2px); font-size: 34px; margin-bottom: 12px; }
+	.menu-item() { .blue-button(); display: block; font-size: 22px; margin: 2px 0; padding: 6px 0; text-align: center; width: 100%; }
+	#nav {
+		.breadcrumbs { margin: 4px;
+			.breadcrumb { display: inline; padding: 0 4px;
+				a { color: darken(@primary-blue, 20%); font-size: 16px; text-decoration: none;
+					&:hover { color: @primary-blue; }
+					&:before { content:'› '; }
+				}
 			}
 		}
 	}
-	.root-container { .center-block(); .adaptive-width(320px); }
-}
-body.home, body.play, body.play-deck {
-	.game-container { #abootay > .main-panel(); }
-}
-body.home {
-	.game-container {
-		.turn-summary {
-			h3 { .text-shadow(@black 1px 1px 2px); border-bottom: 2px solid darken(@gray, 10%); font-size: 24px; padding-bottom: 12px; }
-			.phrase { line-height: 1.6em; } 
+	#form {
+		.create-form { .box-shadow(inset 0px 0px 12px @black); padding: 16px 0;
+			h3 { font-size: 24px; border-bottom: 2px solid rgba(0,0,0,0.4); padding: 0 16px 4px; }
+			form { margin: 16px 16px 0;
+				input[type=text], textarea { .adaptive-width(320px, 100%); font-size: 20px; display: block; line-height: 1.2em; }
+				[type=submit] { .blue-button(); }
+			}
+			
 		}
 	}
-	.button { .menu-item(); }
+	#deck {
+		.card() { text-align: center;
+			.phrase {.animation(word-animation 0.4s ease-in-out); .text-shadow(@black -1px -1px 2px); font-size: 36px; padding-bottom: 12px; }
+			.notes { margin: 12px; }
+			.note { font-size: 22px; padding: 6px; }
+		}
+	}
+	#game {
+		.action-button() { #abootay > .menu-item(); .border-radius(5px); }
+		.timer { margin-bottom: 12px; #gradient > .horizontal(@deep-blue-dark, lighten(@deep-blue-dark, 10%));
+			.time-left { background: @deep-blue-light; height: 2px; }
+		}
+		.turn-summary {
+			h3 { .text-shadow(@black 1px 1px 2px); border-bottom: 2px solid rgba(0,0,0,0.4); font-size: 24px; padding-bottom: 12px; }
+			.phrases-seen-this-round { margin: 10px 0 12px; }
+			.phrase { line-height: 1.6em; }
+		}
+	}
 }
-body.play-deck {
+
+/*
+ * Global Styles
+ */
+ body { background: @black; color: @white; font-family: Helvetica, Arial, sans-serif; font-size: 20px; }
+ h1 { #abootay > .title-text(); }
+.breadcrumbs { #abootay > #nav > .breadcrumbs(); }
+.root-container { .center-block(); .adaptive-width(320px); }
+.page-content-container { #abootay > .main-panel(); }
+.create-form-container { #abootay > #form > .create-form();
+	.submit-container { margin-top: 12px; text-align: center; }
+}
+.game-container { #abootay > .main-panel();
+	.menu-item { #abootay > .menu-item(); }
+	.card { #abootay > #deck > .card();
+		.timer { #abootay > #game > .timer(); }
+	}
+	button { #abootay > #game > .action-button(); }
 	
+	// start game page
+	.start-game {
+		h3 { margin-bottom: 12px; }
+	}
+
+	// choose deck page
+	.choose-deck {
+		a { #abootay > .menu-item(); }
+	}
+
+	// turn summary page
+	.turn-summary { #abootay > #game > .turn-summary(); }
 }
-.timer {
-	.time-left { background: rgb(33,40,42); height: 2px; }
-}
+
+/*
+ * Page-Specific Styles
+ */
 body.decks {
-	.create-form-container { background: @yellow; padding: 16px 0;
-		h3 { font-size: 24px; border-bottom: 2px solid darken(@yellow, 30%); padding: 0 16px 4px; }
-		.create-deck-form { margin: 16px 16px 0; }
-	}
-	.deck-name {
-		input { .text-input(); }
-	}
-	.submit { margin-top: 12px; text-align: center; 
-		input { .blue-button(); }
-	}
 	.decks-container { margin: 22px 0;
 		h3 { font-size: 24px; }
 		.decks { margin: 12px 0;}
-		a { .menu-item(); }
+		a { #abootay > .menu-item(); }
 	}
-}
-body.deck-layout {
-	.root-container { background: transparent; }
-	.page-content-container { #abootay > .main-panel(); }
 }
 body.deck {
-	.create-form-container { background: @yellow; padding: 16px 0;
-		h3 { font-size: 24px; border-bottom: 2px solid darken(@yellow, 30%); padding: 0 16px 4px; }
-		.create-card-form { margin: 16px 16px 0; }
-		.phrase input { .text-input(); }
-		.notes textarea { .text-input(); height: 100px; }
-		.submit {  margin-top: 12px; text-align: center; 
-			input { .blue-button(); }
-		}
-	}
+	.notes textarea { height: 100px; }
 	.deck-info { font-size: 24px; margin-bottom: 12px;}
-	.button { .menu-item(); }
+	.button { #abootay > .menu-item(); }
 	.play { margin-top: 24px; }
 	.cards { display: none; margin-top: 12px;
 		&.show { display: block; }

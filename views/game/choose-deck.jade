@@ -1,5 +1,6 @@
-h1 Choose Deck
-ul.decks
-	each deckName in deckNames
-		li.deck
-			a.button(href=path.to.playDeck(deckName), deck-name=deckName)= deckName
+.choose-deck
+	h1 Choose Deck
+	ul.decks
+		each deckName in deckNames
+			li.deck
+				a.button(href=path.to.playDeck(deckName), deck-name=deckName)= deckName

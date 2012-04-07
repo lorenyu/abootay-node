@@ -2,7 +2,7 @@ form.create-card-form(action=path.to.api.addCardToDeck(deck), method='post')
 	.phrase
 		label Phrase
 		input(type='text', name='phrase')
-	.submit
+	.submit-container
 		input(type='submit', value='Add')
 script
 	$('.create-card-form .phrase input').focus()

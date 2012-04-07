@@ -10,16 +10,18 @@
 			  .append('div')
 			  .classed('time-left', true)
 			  .style('width', this.percentTimeLeft() * this.$el.width())
-			  .style('background-color', this.color());
+			  .style('background-color', 'rgb(0, 170, 240)');
 
 			this.model.on('tick:second', _.bind(this.render, this));
 		},
 		render: function() {
 			d3.select(this.el)
 			  .select('.time-left')
+			  .style('background-color', 'rgb(0, 230, 252)')
 			  .transition()
 			  .style('width', this.percentTimeLeft() * this.$el.width())
-			  .style('background-color', this.color());
+			  .duration(500)
+			  .style('background-color', 'rgb(0, 170, 240)');
 			return this;
 		},
 		percentTimeLeft: function() {
