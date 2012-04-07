@@ -2,7 +2,7 @@ form.create-deck-form(action=path.to.api.createDeck(), method='post')
 	.deck-name
 		label Deck Name:
 		input(type='text', name='name')
-	.submit
+	.submit-container
 		input(type='submit', value='Add')
 script
 	$('.create-deck-form .deck-name input').focus()
