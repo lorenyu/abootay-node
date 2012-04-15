@@ -12,15 +12,8 @@
 		decks: function() {
 			return '/decks'
 		},
-		deck: function(deck_or_deckName) {
-			var deckName;
-			if (typeof(deck_or_deckName) === 'string') {
-				deckName = deck_or_deckName;
-			} else {
-				deck = deck_or_deckName;
-				deckName = deck.name;
-			}
-			return '/decks/' + escape(deckName);
+		deck: function(deck) {
+			return '/decks/' + deck._id;
 		},
 		startGameWithDeck: function(deck) {
 			// at some point it would be cool to have others join the same game in different roles

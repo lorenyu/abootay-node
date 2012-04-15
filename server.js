@@ -43,7 +43,7 @@ app.get('/js/path.js', function(req,res){
 	res.sendfile('path.js');
 });
 
-app.get('/decks/:deckName', controllers.DeckController.deck);
+app.get('/decks/:deckId', controllers.DeckController.deck);
 
 app.get('/decks', controllers.DeckController.list);
 app.param('deckName', controllers.DeckController.paramDeckName);
