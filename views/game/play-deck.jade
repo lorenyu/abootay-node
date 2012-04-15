@@ -6,24 +6,6 @@ block append precompile
 block body_content
 	.game-container Just a Minute...
 	script
-		(function(deckName) {
-			$.ajax({
-				url: '/json/decks/' + escape(deckName) + '/cards',
-				dataType: 'json',
-				success: function(cards, status) {
-					if (cards.length == 0) {
-						alert('No cards in deck');
-						return;
-					}
-
-					cards = _.shuffle(cards);
-					abootay.game = new abootay.models.Game({ cards: cards });
-					new abootay.views.GameView({
-						el: $('.game-container'),
-						model: abootay.game
-					});
-					
-					abootay.game.start();
-				}
-			})
-		})('#{ deck.name.replace(/'/g, "\\'") }');
+		// Kind of a hack. I want the backbone router handler to trigger.
+		Backbone.history.stop();
+		Backbone.history.start({pushState: true, silent:false});

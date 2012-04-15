@@ -1,4 +1,5 @@
 var db = require('../db'),
+	Deck = require('../models/Deck'),
 	ObjectID = require('mongodb').ObjectID,
 	_ = require('underscore');
 
@@ -11,11 +12,7 @@ var DeckService = module.exports = {
 				decks.findOne({ name: deckName }, function(err, deck) {
 					if (err) return callback(err);
 
-					if (!deck.cards) {
-						deck.cards = [];
-					}
-
-					callback(null, deck);
+					callback(null, new Deck(deck));
 				});
 			});
 		});
@@ -28,11 +25,7 @@ var DeckService = module.exports = {
 				decks.findOne({ _id: ObjectID.createFromHexString(deckId) }, function(err, deck) {
 					if (err) return callback(err);
 
-					if (!deck.cards) {
-						deck.cards = [];
-					}
-
-					callback(null, deck);
+					callback(null, new Deck(deck));
 				});
 			});
 		});
@@ -42,8 +35,11 @@ var DeckService = module.exports = {
 			if (err) return callback(err);
 
 			db.collection('decks', function(err, decks) {
-				decks.find({}, {sort: [['name', 1]]}).toArray(function(err, items) {
-					callback(null, items);
+				decks.find({}, {sort: [['name', 1]]}).toArray(function(err, decks) {
+					decks = _.map(decks, function(deck) {
+						return new Deck(deck);
+					});
+					callback(null, decks);
 				});
 			});
 		});
@@ -64,18 +60,17 @@ var DeckService = module.exports = {
 		db.open(function(err, db) {
 			if (err) return callback(err);
 
-			db.collection('decks', function(err, collection) {
-				collection.update(
-					{ name: deck.name },
-					{ $set: { name: deck.name } },
-					{ upsert: true, safe: true },
+			db.collection('decks', function(err, decks) {
+				deck.dateCreated = new Date();
+				decks.insert(deck,
+					{ safe: true },
 					function(err, result) {
 						if (err) return callback(err);
 
-						collection.findOne({ name: deck.name }, function(err, deck) {
+						decks.findOne({ _id: deck._id }, function(err, deck) {
 							if (err) return callback(err);
 
-							callback(null, deck);
+							callback(null, new Deck(deck));
 						});
 					}
 				);

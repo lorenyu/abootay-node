@@ -1,6 +1,6 @@
 .choose-deck
 	h1 Choose Deck
 	ul.decks
-		each deckName in deckNames
+		each deck in decks
 			li.deck
-				a.button(href=path.to.playDeck(deckName), deck-name=deckName)= deckName
+				a.button(href=path.to.playDeck(deck)) #{deck.name} (#{deck.cards.length})

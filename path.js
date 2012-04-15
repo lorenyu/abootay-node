@@ -17,20 +17,13 @@
 		},
 		startGameWithDeck: function(deck) {
 			// at some point it would be cool to have others join the same game in different roles
-			return '/games/' + escape(deck.name);
+			return '/games/' + escape(deck._id);
 		},
 		play: function() {
 			return '/play';
 		},
-		playDeck: function(deck_or_deckName) {
-			var deckName;
-			if (typeof(deck_or_deckName) === 'string') {
-				deckName = deck_or_deckName;
-			} else {
-				deck = deck_or_deckName;
-				deckName = deck.name;
-			}
-			return '/play/' + escape(deckName);
+		playDeck: function(deck) {
+			return '/play/' + escape(deck._id);
 		},
 		api: {
 			root: function() {

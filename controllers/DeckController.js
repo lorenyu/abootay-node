@@ -1,4 +1,5 @@
 var DeckService = require('../services/DeckService'),
+	Deck = require('../models/Deck'),
 	path = require('../path');
 
 var DeckController = module.exports = {
@@ -16,6 +17,13 @@ var DeckController = module.exports = {
 
 			req.deck = deck;
 			next();
+		});
+	},
+	decksJSON: function(req, res) {
+		DeckService.getDecks(function(err, decks) {
+			if (err) { console.error(err); res.send(err); }
+
+			res.json(decks);
 		});
 	},
 	deckNamesJSON: function(req, res) {
@@ -44,10 +52,9 @@ var DeckController = module.exports = {
 	},
 	create: function(req, res) {
 		var name = req.body.name,
-			deck = {
-				name: name,
-				cards: []
-			};
+			deck = new Deck({
+				name: name
+			});
 		DeckService.createDeck(deck, function(err, deck) {
 			if (err) return res.send(err);
 

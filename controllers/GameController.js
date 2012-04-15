@@ -7,11 +7,11 @@ var GameController = module.exports = {
 		});
 	},
 	play: function(req, res) {
-		DeckService.getDeckNames(function(err, deckNames) {
+		DeckService.getDecks(function(err, decks) {
 			if (err) { console.error(err); res.send(err); }
 
 			res.render('game/play', {
-				deckNames: deckNames
+				decks: decks
 			});
 		});
 	},

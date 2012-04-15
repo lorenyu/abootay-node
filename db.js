@@ -1,3 +1,18 @@
 var mongodb = require('mongodb');
 
-var db = module.exports = new mongodb.Db('abootay', new mongodb.Server('localhost', 27017, { autoreconnect: true }));
+var _db = new mongodb.Db('abootay', new mongodb.Server('localhost', 27017, { autoreconnect: true })),
+	_conn = null;
+
+module.exports = {
+	open: function(callback) {
+		if (_conn) {
+			return callback(null, _conn);
+		}
+
+		_db.open(function(err, conn) {
+			if (err) return;
+			_conn = conn;
+			return callback(null, _conn);
+		});
+	}
+}

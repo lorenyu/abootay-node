@@ -50,7 +50,8 @@ app.param('deckName', controllers.DeckController.paramDeckName);
 app.param('deckId', controllers.DeckController.paramDeckId);
 app.param('userId', controllers.UserController.paramUserId);
 app.put('/decks/create', controllers.DeckController.create);
-app.get('/json/decks/:deckName/cards', controllers.CardController.cardsJSON);
+app.get('/json/decks/:deckId/cards', controllers.CardController.cardsJSON);
+app.get('/json/decks', controllers.DeckController.decksJSON);
 app.get('/json/decks/names', controllers.DeckController.deckNamesJSON);
 app.post('/api/user', controllers.UserController.create);
 app.get('/api/user/:userId', controllers.UserController.user);
@@ -62,8 +63,8 @@ app.get('/json/*', controllers.ClientDataController.serveClientData);
 app.put('/cards/create', controllers.CardController.addCardToDeck);
 
 app.get('/play', controllers.GameController.play);
-app.get('/play/:deckName', controllers.GameController.playDeck);
-app.get('/games/:deckName', controllers.GameController.start);
+app.get('/play/:deckId', controllers.GameController.playDeck);
+app.get('/games/:deckId', controllers.GameController.start);
 
 app.listen(8805);
 console.log("Server listening on 8805");

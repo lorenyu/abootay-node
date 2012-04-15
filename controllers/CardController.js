@@ -10,14 +10,14 @@ var CardController = module.exports = {
 		});
 	},
 	addCardToDeck: function(req, res) {
-		var deckName = req.deck.name;
-		phrase = req.param('phrase'),
-		card = {
-			phrase: phrase
-		};
+		var deck = req.deck,
+			phrase = req.param('phrase'),
+			card = {
+				phrase: phrase
+			};
 
-		CardService.addCardToDeck(card, deckName, function(err, numUpdated) {
-			res.redirect(path.to.deck(deckName));
+		CardService.addCardToDeck(card, deck, function(err, numUpdated) {
+			res.redirect(path.to.deck(deck));
 		});
 	}
 };

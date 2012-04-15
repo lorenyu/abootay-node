@@ -39,18 +39,18 @@
 		routes: {
 			'': 				'index', 
 			'play': 			'play',
-			'play/:deckName': 	'playDeck'
+			'play/:deckId': 	'playDeck'
 		},
 		index: function() {
 			$('.game-container').html(abootay.render.game.startMenu({ path: abootay.path }));
 		},
 		play: function() {
-			abootay.data.get.deck.names(function(err, deckNames){
-				$('.game-container').html(abootay.render.game.chooseDeck({ deckNames: deckNames, path: abootay.path }));
+			abootay.data.get.decks(function(err, decks){
+				$('.game-container').html(abootay.render.game.chooseDeck({ decks: decks, path: abootay.path }));
 			});
 		},
-		playDeck: function(deckName) {
-			abootay.data.get.deck(deckName, function(err, deck) {
+		playDeck: function(deckId) {
+			abootay.data.get.deckById(deckId, function(err, deck) {
 				if (deck.cards.length == 0) {
 					alert('No cards in deck');
 					window.history.go(-1);

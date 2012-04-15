@@ -4,23 +4,21 @@ var fs = require('fs'),
 	DeckService = require('../services/DeckService');
 
 var CardService = module.exports = {
-	getCardsForDeck: function(deck_or_deckName, callback) {
-		var cards = deck_or_deckName.cards;
+	getCardsForDeck: function(deck, callback) {
+		var cards = deck.cards;
 		if (cards) return callback(null, cards);
 
-		DeckService.getDeckByName(deck_or_deckName, function(err, deck) {
+		DeckService.getDeckById(deck._id, function(err, deck) {
 			callback(null, deck.cards);			
 		});
 	},
-	addCardToDeck: function(card, deck_or_deckName, callback) {
-		var deckName = deck_or_deckName.name || deck_or_deckName;
-
+	addCardToDeck: function(card, deck, callback) {
 		db.open(function(err, db) {
 			if (err) { console.error(err); return; }
 
 			db.collection('decks', function(err, decks) {
 				decks.update(
-					{ name : deckName },
+					{ _id : deck._id },
 					{ $push : { cards : card } },
 					{ safe: true },
 					callback

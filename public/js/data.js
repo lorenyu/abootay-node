@@ -29,11 +29,11 @@
 			});
 		}
 	};
-	data.get.deck = function(deckName, callback){
-		data.get('deck', 'get-deck-by-name', deckName, callback);
+	data.get.deckById = function(deckId, callback){
+		data.get('deck', 'get-deck-by-id', deckId, callback);
 	};
-	data.get.deck.names = function(callback) {
-		data.get('deck', 'get-deck-names', callback);
+	data.get.decks = function(callback) {
+		data.get('deck', 'get-decks', callback);
 	}
 
 })();
