@@ -1,19 +1,19 @@
 extends layout
 
 block append precompile
-	- bodyClass.push('decks')
+    - bodyClass.push('decks')
 
 block title
-	h1 Decks
+    h1 Decks
 
 block article_content
-	.create-form-container
-		h3 Add Deck
-		include create-form
+    .create-form-container
+        h3 Add Deck
+        include create-form
 
-	.decks-container
-		h3 #{decks.length} Decks
-		.decks
-			each deck in decks
-				.deck
-					a(href=path.to.deck(deck))= deck.name
+    .decks-container
+        h3 #{decks.length} Decks
+        .decks
+            each deck in decks
+                .deck
+                    a(href=path.to.deck(deck))= deck.name

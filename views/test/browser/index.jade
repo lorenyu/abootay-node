@@ -1,34 +1,34 @@
 html
-	head
-		meta(charset="utf-8")
-		title Abootay Client Tests
+    head
+        meta(charset="utf-8")
+        title Abootay Client Tests
 
-		link(rel="stylesheet", href="/css/lib/mocha/mocha.css")
+        link(rel="stylesheet", href="/css/lib/mocha/mocha.css")
 
-		//- source files
-		include ../../js/lib/index
-		include ../../js/abootay
+        //- source files
+        include ../../js/lib/index
+        include ../../js/abootay
 
-		//- mocha test framework and chai assertion library
-		script(src="/lib/chai/chai.js")
-		script(src="/lib/sinon/sinon-1.3.1.js")
-		script(src="/lib/sinon-chai/sinon-chai.js")
-		script(src="/js/lib/mocha/mocha.js")
+        //- mocha test framework and chai assertion library
+        script(src="/lib/chai/chai.js")
+        script(src="/lib/sinon/sinon-1.3.1.js")
+        script(src="/lib/sinon-chai/sinon-chai.js")
+        script(src="/js/lib/mocha/mocha.js")
 
-		//- set up mocha with 'exports' interface
-		script
-			mocha.setup({
-				ui: 'bdd',
-				ignoreLeaks: true
-			});
-			var should = chai.should(),
-				expect = chai.expect;
-			chai.use(sinonChai);
+        //- set up mocha with 'exports' interface
+        script
+            mocha.setup({
+                ui: 'bdd',
+                ignoreLeaks: true
+            });
+            var should = chai.should(),
+                expect = chai.expect;
+            chai.use(sinonChai);
 
-		script(src="/models.Timer.js")
-		script
-			$(function(){
-				mocha.run()
-			});
+        script(src="/models.Timer.js")
+        script
+            $(function(){
+                mocha.run()
+            });
 body
-	#mocha
+    #mocha

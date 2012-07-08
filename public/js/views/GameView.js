@@ -1,45 +1,45 @@
 (function($) {
-	var abootay = this.abootay;
+    var abootay = this.abootay;
 
-	abootay.namespace('views').GameView = Backbone.View.extend({
+    abootay.namespace('views').GameView = Backbone.View.extend({
 
-		className: 'game',
+        className: 'game',
 
-		_startGameView: null,
-		_cardView: null,
-		_turnSummaryView: null,
-		events: {
-			'click .start-game .start': 'startNextTurn',
-			'click .turn-summary button': 'startNextTurn',
-			'click .card-container button': 'showNextCard'
-		},
+        _startGameView: null,
+        _cardView: null,
+        _turnSummaryView: null,
+        events: {
+            'click .start-game .start': 'startNextTurn',
+            'click .turn-summary button': 'startNextTurn',
+            'click .card-container button': 'showNextCard'
+        },
 
-		initialize: function() {
-			this._startGameView = new abootay.views.StartGameView({ model: this.model });
-			this._cardView = new abootay.views.CardView({ model: this.model });
-			this._turnSummaryView = new abootay.views.TurnSummaryView({ model: this.model });
+        initialize: function() {
+            this._startGameView = new abootay.views.StartGameView({ model: this.model });
+            this._cardView = new abootay.views.CardView({ model: this.model });
+            this._turnSummaryView = new abootay.views.TurnSummaryView({ model: this.model });
 
-			this.model.on('turn:start', this.startTurn, this);
-			this.model.on('turn:end', this.endTurn, this);
+            this.model.on('turn:start', this.startTurn, this);
+            this.model.on('turn:end', this.endTurn, this);
 
-			this.$el.html(this._startGameView.render().el);
-		},
-		startNextTurn: function() {
-			this.model.startTurn();
-		},
-		showNextCard: function() {
-			this.model.showNextCard();
-		},
-		startTurn: function() {
-			this.$el.html(this._cardView.el);
-		},
-		endTurn: function() {
-			this.$el.html(this._turnSummaryView.el);
-		},
-		render: function() {
-			this.$el.html(abootay.render.game.showCard({card: this.model.get('currentCard')}));
-			return this;
-		}
-	});
-	
+            this.$el.html(this._startGameView.render().el);
+        },
+        startNextTurn: function() {
+            this.model.startTurn();
+        },
+        showNextCard: function() {
+            this.model.showNextCard();
+        },
+        startTurn: function() {
+            this.$el.html(this._cardView.el);
+        },
+        endTurn: function() {
+            this.$el.html(this._turnSummaryView.el);
+        },
+        render: function() {
+            this.$el.html(abootay.render.game.showCard({card: this.model.get('currentCard')}));
+            return this;
+        }
+    });
+    
 })(jQuery);

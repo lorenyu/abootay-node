@@ -1,23 +1,23 @@
 (function($) {
-	var abootay = this.abootay;
+    var abootay = this.abootay;
 
-	abootay.namespace('views').AppView = Backbone.View.extend({
+    abootay.namespace('views').AppView = Backbone.View.extend({
 
-		events: {
-			'click a': 'navigate'
-		},
+        events: {
+            'click a': 'navigate'
+        },
 
-		initialize: function() {
-		},
-		navigate: function(event) {
-			var href = $(event.target).attr('href');
+        initialize: function() {
+        },
+        navigate: function(event) {
+            var href = $(event.target).attr('href');
 
-			if (Backbone.history.getUrlHandler(href)) {
-				abootay.router.navigate(href, {trigger:true});
-				event.preventDefault();
-			}
+            if (Backbone.history.getUrlHandler(href)) {
+                abootay.router.navigate(href, {trigger:true});
+                event.preventDefault();
+            }
 
-		}
-	});
-	
+        }
+    });
+    
 })(jQuery);

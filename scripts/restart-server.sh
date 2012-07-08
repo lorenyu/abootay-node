@@ -4,7 +4,7 @@
 
 if [ -f $PID_FILE ]
 then
-	./scripts/stop-server.sh
+    ./scripts/stop-server.sh
 fi
 
 ./scripts/start-server.sh

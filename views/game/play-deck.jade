@@ -1,11 +1,11 @@
 extends ../layout
 
 block append precompile
-	- bodyClass.push('play-deck')
+    - bodyClass.push('play-deck')
 
 block body_content
-	.game-container Just a Minute...
-	script
-		// Kind of a hack. I want the backbone router handler to trigger.
-		Backbone.history.stop();
-		Backbone.history.start({pushState: true, silent:false});
+    .game-container Just a Minute...
+    script
+        // Kind of a hack. I want the backbone router handler to trigger.
+        Backbone.history.stop();
+        Backbone.history.start({pushState: true, silent:false});

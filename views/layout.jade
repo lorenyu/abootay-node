@@ -1,29 +1,30 @@
 block precompile
-	- bodyClass = []
-	- breadcrumbs = [{ title: 'Home', url: path.to.home() }]
+    - bodyClass = []
+    - breadcrumbs = [{ title: 'Home', url: path.to.home() }]
 
 html
-	head
-		title Abootay
-		meta(name="viewport", content="width=device-width, user-scalable=yes")
-		meta(name="apple-mobile-web-app-capable", content="yes")
-		meta(name="apple-mobile-web-app-status-bar-style", content="black-translucent")
+    head
+        title Abootay
+        meta(name="viewport", content="width=device-width, user-scalable=yes")
+        meta(name="apple-mobile-web-app-capable", content="yes")
+        meta(name="apple-mobile-web-app-status-bar-style", content="black-translucent")
 
-		block scripts
-			include js/lib/index
-			include js/abootay
-			include css/reset
-			include css/all
-			script
-				$(document).ready(function() {
-					abootay.user = abootay.models.User.loadOrCreateUser();
-					abootay.app = new abootay.models.App();
-					new abootay.views.AppView({
-						el: document.body,
-						model: abootay.app
-					});
-				});
+        block scripts
+            include js/lib/index
+            include js/abootay
+            include css/reset
+            include css/all
+            script
+                $(document).ready(function() {
+                    abootay.user = abootay.models.User.loadOrCreateUser();
+                    abootay.app = new abootay.models.App();
+                    new abootay.views.AppView({
+                        el: document.body,
+                        model: abootay.app
+                    });
+                });
 
-	body(class=bodyClass)
-		.root-container
-			block body_content
+    body(class=bodyClass)
+        include js/lib/facebook
+        .root-container
+            block body_content

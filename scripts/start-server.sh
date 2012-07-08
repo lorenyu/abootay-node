@@ -5,19 +5,19 @@
 # if server already running, print out pid and quit
 if [ -f $PID_FILE ]
 then
-	pid=`cat $PID_FILE`
-	echo "Server already running with pid $pid."
-	exit
+    pid=`cat $PID_FILE`
+    echo "Server already running with pid $pid."
+    exit
 fi
 
 if ! [ -f $OUT_FILE ]
 then
-	touch $OUT_FILE
+    touch $OUT_FILE
 fi
 
 if ! [ -f $ERR_FILE ]
 then
-	touch $ERR_FILE
+    touch $ERR_FILE
 fi
 
 # start the node server

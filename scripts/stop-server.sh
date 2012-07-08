@@ -5,8 +5,8 @@
 # if server not running, quit
 if ! [ -f $PID_FILE ]
 then
-	echo "Server already stopped."
-	exit
+    echo "Server already stopped."
+    exit
 fi
 
 # read pid from file

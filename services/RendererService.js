@@ -1,20 +1,20 @@
 var fs = require('fs'),
-	jade = require('jade'),
-	_ = require('underscore'),
-	_s = require('underscore.string');
+    jade = require('jade'),
+    _ = require('underscore'),
+    _s = require('underscore.string');
 
 var RendererService = module.exports = {
-	getClientRenderer: function(path, callback) {
-		var filename = 'views/' + path + '.jade';
-		fs.readFile(filename, function (err, jadeStr) {
-			if (err) return callback(err);
+    getClientRenderer: function(path, callback) {
+        var filename = 'views/' + path + '.jade';
+        fs.readFile(filename, function (err, jadeStr) {
+            if (err) return callback(err);
 
-			var render = jade.compile(jadeStr, { client: true, filename: filename }),
-				parts = path.split('/'),
-				renderFunctionName = _s.camelize(parts.pop()),
-				namespace = 'render.' + parts.join('.');
-			render = _.template('abootay.namespace("<%= namespace %>").<%= renderFunctionName %> = ')({ namespace: namespace, renderFunctionName: renderFunctionName }) + render.toString();
-			callback(null, render);
-		});
-	}
+            var render = jade.compile(jadeStr, { client: true, filename: filename }),
+                parts = path.split('/'),
+                renderFunctionName = _s.camelize(parts.pop()),
+                namespace = 'render.' + parts.join('.');
+            render = _.template('abootay.namespace("<%= namespace %>").<%= renderFunctionName %> = ')({ namespace: namespace, renderFunctionName: renderFunctionName }) + render.toString();
+            callback(null, render);
+        });
+    }
 };

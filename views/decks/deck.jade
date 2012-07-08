@@ -1,30 +1,30 @@
 extends layout
 
 block append precompile
-	- bodyClass.push('deck')
-	- breadcrumbs.push({ title: deck.name, url: path.to.deck(deck) })
+    - bodyClass.push('deck')
+    - breadcrumbs.push({ title: deck.name, url: path.to.deck(deck) })
 
 block title
-	h1= deck.name
+    h1= deck.name
 
 block article_content
-	.deck-info #{deck.cards.length} Cards
+    .deck-info #{deck.cards.length} Cards
 
-	.create-form-container
-		h3 Add Card
-		include ../cards/create-form.jade
+    .create-form-container
+        h3 Add Card
+        include ../cards/create-form.jade
 
-	a.play.button(href=path.to.playDeck(deck)) Play Now
+    a.play.button(href=path.to.playDeck(deck)) Play Now
 
-	button.button.show-cards Show Cards
-	.cards
-		each card in deck.cards
-			.card= card.phrase
-	script
-		$('.show-cards').click(function(event){
-			var cards = $('.cards');
-			cards.toggleClass('show');
-			if (cards.hasClass('show')) {
-				scrollTo(0, cards.position().top);
-			}
-		});
+    button.button.show-cards Show Cards
+    .cards
+        each card in deck.cards
+            .card= card.phrase
+    script
+        $('.show-cards').click(function(event){
+            var cards = $('.cards');
+            cards.toggleClass('show');
+            if (cards.hasClass('show')) {
+                scrollTo(0, cards.position().top);
+            }
+        });
