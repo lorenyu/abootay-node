@@ -6,7 +6,7 @@ var fs = require('fs'),
 	controllers = require('./controllers'),
 	services = require('./services'),
 	path = require('./path'),
-
+	config = require('./config/config'),
 	jade = require('jade');
 
 var app = express.createServer(),
