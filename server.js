@@ -25,7 +25,8 @@ app.set('view options', { layout: false });
 
 // helper functions to be used within views
 app.helpers({
-	path: path
+	path: path,
+	config: config
 });
 
 
