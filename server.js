@@ -12,8 +12,10 @@ var fs = require('fs'),
 var app = express.createServer(),
 	db = new mongodb.Db('abootay', new mongodb.Server('localhost', 27017, { autoreconnect: true }));
 
+app.use(express.cookieParser());
 app.use(express.bodyParser());
 app.use(express.methodOverride());
+app.use(express.session({ secret: config.session.secret }));
 app.use(express.compiler({ src: __dirname + '/public', enable: ['less'] }));
 app.use(express.static(__dirname + '/public'));
 app.use(express.static(__dirname + '/test/browser'));
